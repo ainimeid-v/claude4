@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ANIME FANTASY RPG - UNIT EXPLORER</title>
+    
+    <!-- CSS FILE -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-wallpapers.css">
+    
+    <!-- ICONS & FONTS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@700&family=Exo+2:wght@300;400;600;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="theme-character">
+
+    <!-- TOP HUD: RPG STYLE -->
+    <div id="top-hud">
+        <div id="system-clock">00:00:00</div>
+        <div id="system-date">20 FEB 2026</div>
+    </div>
+
+    <!-- PAGE 1: WORLD MAP (OPENING) -->
+    <section id="page-1" class="page active no-scroll">
+        <!-- SHOOTING STARS -->
+        <div class="shooting-stars" aria-hidden="true">
+            <div class="star star-1"></div>
+            <div class="star star-2"></div>
+            <div class="star star-3"></div>
+            <div class="star star-4"></div>
+            <div class="star star-5"></div>
+            <div class="star star-6"></div>
+            <div class="star star-7"></div>
+        </div>
+        <div class="hero-section">
+            <div class="floating-decorations">
+                <div class="circle-1"></div>
+                <div class="circle-2"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="rpg-title">AINIME GALLERY</h1>
+                
+                <div class="p1-btns">
+                    <button id="start-btn" class="rpg-btn glow">ENTER WORLD</button>
+                </div>
+
+                <p class="rpg-subtitle">Dive into the World of Legends. Choose your destiny.</p>
+                <p class="rpg-flavor-text">Ancient legends are waiting for your command. Explore the archives and find your path.</p>
+                
+                <div class="p1-btns">
+                    <button id="patch-btn" class="rpg-btn-outline">PATCH NOTES</button>
+                    <span class="patch-ver-text">v1.0.8</span>
+                </div>
+            </div>
+            
+            <div id="category-grid" class="category-grid hidden">
+                <button id="cancel-cat-btn" class="cancel-btn-new"><i class="fas fa-times-circle"></i></button>
+                <div class="cat-card" data-category="Character" style="--clr:#FF2400">
+                    <div class="cat-icon"><i class="fas fa-shield-halved"></i></div>
+                    <span class="cat-name">CHARACTER</span>
+                </div>
+                <div class="cat-card" data-category="Monster" style="--clr:#7851A9">
+                    <div class="cat-icon"><i class="fas fa-dragon"></i></div>
+                    <span class="cat-name">MONSTER</span>
+                </div>
+                <div class="cat-card" data-category="Pet" style="--clr:#FF1493">
+                    <div class="cat-icon"><i class="fas fa-paw"></i></div>
+                    <span class="cat-name">PET</span>
+                </div>
+                <div class="cat-card" data-category="Item" style="--clr:#228B22">
+                    <div class="cat-icon"><i class="fas fa-gem"></i></div>
+                    <span class="cat-name">ITEM</span>
+                </div>
+                <div class="cat-card" data-category="Magic" style="--clr:#4169E1">
+                    <div class="cat-icon"><i class="fas fa-wand-sparkles"></i></div>
+                    <span class="cat-name">MAGIC</span>
+                </div>
+                <div class="cat-card" data-category="Area" style="--clr:#DAA520">
+                    <div class="cat-icon"><i class="fas fa-map-location-dot"></i></div>
+                    <span class="cat-name">AREA</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 2: ARCHIVE (LIST) -->
+    <section id="page-2" class="page">
+        <div class="page-container">
+            <header class="rpg-header">
+                <div class="header-nav">
+                    <button class="nav-btn back-to-1" title="Back to World Map">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h2 id="category-title">ARCHIVE</h2>
+                    <button id="quick-change-btn" class="nav-btn-highlight" title="Change Category">
+                        <i class="fas fa-th-large"></i> <span>REALM</span>
+                    </button>
+                </div>
+                
+                <div class="search-filter-container">
+                    <div class="rpg-search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="unit-search" placeholder="Search legend...">
+                    </div>
+                    <button id="filter-btn" class="rpg-filter-btn">
+                        <i class="fas fa-sliders"></i>
+                    </button>
+                </div>
+
+                <div id="filter-panel" class="filter-panel hidden">
+                    <div class="filter-section">
+                        <label>RARITY</label>
+                        <div class="rarity-selector">
+                            <span class="r-chip" data-rarity="S">S</span>
+                            <span class="r-chip" data-rarity="A">A</span>
+                            <span class="r-chip" data-rarity="B">B</span>
+                            <span class="r-chip" data-rarity="C">C</span>
+                            <span class="r-chip" data-rarity="D">D</span>
+                        </div>
+                    </div>
+                    <div class="filter-section">
+                        <label>TAGS</label>
+                        <div id="dynamic-tags" class="tag-selector">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    <button id="reset-filters" class="rpg-btn-small"><i class="fas fa-trash-can"></i></button>
+                </div>
+            </header>
+
+            <div id="unit-grid" class="unit-grid">
+                <!-- Units Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 3: LEGENDARY DETAIL -->
+    <section id="page-3" class="page">
+        <div class="page-container detail-view">
+            <div class="detail-nav-static">
+                <button class="nav-btn-circle back-to-2"><i class="fas fa-arrow-left"></i></button>
+                <button class="nav-btn-circle back-to-1"><i class="fas fa-house"></i></button>
+            </div>
+
+            <div class="detail-layout">
+                <div class="unit-visual">
+                    <div class="image-frame">
+                        <img id="detail-img" src="" alt="Legend Image">
+                        <div id="detail-rarity-badge">S</div>
+                    </div>
+                </div>
+
+                <div class="unit-bio">
+                    <h1 id="detail-name">LEGEND NAME</h1>
+                    <h3 id="detail-nickname">"THE TITLE"</h3>
+                    
+                    <div id="detail-tags-container" class="detail-tags">
+                        <!-- Tags -->
+                    </div>
+
+                    <div class="rpg-box story-box">
+                        <div class="box-header">LORE / STORY</div>
+                        <p id="detail-story">Ancient texts tell of a hero...</p>
+                    </div>
+                </div>
+
+                <div class="unit-gallery">
+                    <h4 class="gallery-title">GALLERY</h4>
+                    <div class="carousel">
+                        <div id="carousel-track" class="carousel-track">
+                            <!-- Extra Images -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODALS & OVERLAYS -->
+    <div id="category-modal" class="rpg-modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h3>SELECT REALM</h3>
+            <div id="mini-cat-list" class="mini-cat-list">
+                <!-- Populated dynamically to hide current cat -->
+            </div>
+            <button id="close-modal" class="rpg-btn-small">CLOSE</button>
+        </div>
+    </div>
+
+    <div id="patch-modal" class="rpg-modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content patch-content">
+            <h3>PATCH NOTES</h3>
+            <div class="patch-scroll-area">
+                <p id="patch-text">Loading transmission...</p>
+            </div>
+            <button id="close-patch" class="rpg-btn-small">CLOSE</button>
+        </div>
+    </div>
+
+    <div id="image-viewer" class="viewer-overlay hidden">
+        <span class="close-viewer">&times;</span>
+        <img id="viewer-img" src="">
+    </div>
+
+    <!-- CALENDAR MODAL -->
+    <div id="calendar-modal" class="rpg-modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content calendar-content">
+            <div class="calendar-header">
+                <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                <h3 id="calendar-month-year">FEBRUARY 2026</h3>
+                <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="calendar-weekdays">
+                <span>SUN</span><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span>
+            </div>
+            <div id="calendar-days" class="calendar-days"></div>
+            <button id="close-calendar" class="rpg-btn-small">CLOSE</button>
+        </div>
+    </div>
+
+    <!-- BOTTOM CONTROLS -->
+    <div class="bottom-controls">
+        <button id="refresh-btn" title="Refresh Page">
+            <i class="fas fa-sync-alt"></i>
+        </button>
+        <span id="tiktok-text" class="tiktok-inline-text">TikTok : ainime.id</span>
+    </div>
+
+    <div id="loading-screen" class="loading-overlay">
+
+        <!-- FANTASY LOADING SCREEN — CLEAN VERSION -->
+        <div class="ld-bg"></div>
+        <div class="ld-nebula n1"></div>
+        <div class="ld-nebula n2"></div>
+        <div class="ld-nebula n3"></div>
+        <div class="ld-stars s1"></div>
+        <div class="ld-stars s2"></div>
+        <div class="ld-stars s3"></div>
+
+        <!-- Geometric mandala motif -->
+        <div class="ld-mandala-wrap">
+            <svg class="ld-mandala" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Outer dashed circle -->
+                <circle cx="150" cy="150" r="140" fill="none" stroke="rgba(160,100,255,0.25)" stroke-width="1" stroke-dasharray="6 10"/>
+                <!-- Octagon -->
+                <polygon points="150,12 232,52 272,135 232,218 150,258 68,218 28,135 68,52"
+                    fill="none" stroke="rgba(100,180,255,0.3)" stroke-width="1"/>
+                <!-- Inner hex -->
+                <polygon points="150,45 220,87 220,172 150,214 80,172 80,87"
+                    fill="none" stroke="rgba(255,120,200,0.25)" stroke-width="1"/>
+                <!-- 8-petal flower lines -->
+                <line x1="150" y1="10"  x2="150" y2="290" stroke="rgba(160,100,255,0.15)" stroke-width="0.8"/>
+                <line x1="10"  y1="150" x2="290" y2="150" stroke="rgba(160,100,255,0.15)" stroke-width="0.8"/>
+                <line x1="43"  y1="43"  x2="257" y2="257" stroke="rgba(100,180,255,0.12)" stroke-width="0.8"/>
+                <line x1="257" y1="43"  x2="43"  y2="257" stroke="rgba(100,180,255,0.12)" stroke-width="0.8"/>
+                <!-- Small decorative diamonds at corners -->
+                <polygon points="150,18 156,26 150,34 144,26" fill="rgba(200,150,255,0.5)"/>
+                <polygon points="282,150 274,156 266,150 274,144" fill="rgba(150,200,255,0.5)"/>
+                <polygon points="150,282 156,274 150,266 144,274" fill="rgba(255,150,200,0.5)"/>
+                <polygon points="18,150 26,156 34,150 26,144" fill="rgba(255,200,100,0.5)"/>
+                <!-- Dot accents on hex corners -->
+                <circle cx="150" cy="45"  r="3" fill="rgba(255,180,255,0.6)"/>
+                <circle cx="220" cy="87"  r="3" fill="rgba(150,230,255,0.6)"/>
+                <circle cx="220" cy="172" r="3" fill="rgba(255,200,100,0.6)"/>
+                <circle cx="150" cy="214" r="3" fill="rgba(180,255,180,0.6)"/>
+                <circle cx="80"  cy="172" r="3" fill="rgba(255,130,200,0.6)"/>
+                <circle cx="80"  cy="87"  r="3" fill="rgba(180,150,255,0.6)"/>
+                <!-- Inner circle detail -->
+                <circle cx="150" cy="150" r="55" fill="none" stroke="rgba(255,200,255,0.2)" stroke-width="1" stroke-dasharray="3 6"/>
+                <circle cx="150" cy="150" r="30" fill="none" stroke="rgba(200,160,255,0.2)" stroke-width="1"/>
+            </svg>
+        </div>
+
+        <!-- Portal rings (dinaikkan posisinya) -->
+        <div class="ld-portal-wrap">
+            <div class="ld-portal-ring r1"></div>
+            <div class="ld-portal-ring r2"></div>
+            <div class="ld-portal-ring r3"></div>
+            <div class="ld-portal-core"></div>
+            <div class="ld-rune rn1">✦</div>
+            <div class="ld-rune rn2">◈</div>
+            <div class="ld-rune rn3">✦</div>
+            <div class="ld-rune rn4">◈</div>
+            <div class="ld-rune rn5">✦</div>
+            <div class="ld-rune rn6">◈</div>
+        </div>
+
+        <!-- Magic orbs -->
+        <div class="ld-orb o1"></div>
+        <div class="ld-orb o2"></div>
+        <div class="ld-orb o3"></div>
+        <div class="ld-orb o4"></div>
+        <div class="ld-orb o5"></div>
+
+        <!-- Subtle sparkles only -->
+        <div class="ld-sparkles">
+            <span class="sp sp1">✦</span>
+            <span class="sp sp3">✧</span>
+            <span class="sp sp4">✦</span>
+            <span class="sp sp6">✦</span>
+            <span class="sp sp8">✧</span>
+            <span class="sp sp9">✦</span>
+            <span class="sp sp12">★</span>
+        </div>
+
+        <!-- Bottom info panel -->
+        <div class="loading-content-wrapper">
+            <div class="loading-info-panel">
+                <div class="loading-title">✦ AINIME GALLERY ✦</div>
+                <div class="loading-description">
+                    Sebuah dunia di mana legenda hidup abadi. Temukan kisah para pahlawan, makhluk mitos,
+                    dan artefak kuno yang tersimpan dalam arsip agung ini.
+                </div>
+            </div>
+            <div class="loading-footer">
+                <div class="loading-subtext">✧ Entering the World of Legends ✧</div>
+                <div class="loading-progress-wrapper">
+                    <div class="loading-progress-container">
+                        <div id="progress-bar" class="loading-progress-bar"></div>
+                    </div>
+                    <div class="loading-percentage"><span id="progress-val">0</span>%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RECEPTIONIST CHARACTER — INTERACTIVE, ALL PAGES -->
+    <div id="receptionist" class="recep-wrap">
+        <div class="recep-bubble hidden" id="recep-bubble">
+            <span id="recep-bubble-text">Welcome!</span>
+        </div>
+        <div class="recep-img-wrap">
+            <video
+                id="recep-vid"
+                class="recep-img"
+                src="receptionist.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                disablepictureinpicture
+                draggable="false"
+            ></video>
+        </div>
+    </div>
+
+    <!-- SCRIPT FILE -->
+    <script src="script.js"></script>
+    <script>
+    // ── FORCE DARK MODE ALWAYS ──
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+
+    // ── RECEPTIONIST LOGIC ──
+    (function(){
+        const el     = document.getElementById('receptionist');
+        const bubble = document.getElementById('recep-bubble');
+        const bubTxt = document.getElementById('recep-bubble-text');
+        const vid    = document.getElementById('recep-vid');
+        if (!el || !bubble) return;
+
+        const dialogues = [
+            "Selamat datang di Ainime Gallery! ✨",
+            "Ada yang bisa aku bantu? 📖",
+            "Coba explore semua kategori ya~ 🗺️",
+            "Klik kartu untuk lihat detail legendnya! ⚔️",
+            "Jangan lupa cek PATCH NOTES terbaru! 📋",
+            "Wah, ada pengunjung setia! 💛",
+            "Sudah coba kategori Magic belum? 🔮",
+            "Gunakan filter untuk cari legend favoritmu~",
+            "Tekan tanggal di kanan atas buat lihat kalender! 📅",
+            "Aku selalu di sini untukmu~ ✦"
+        ];
+        let bubTimer = null;
+        let lastDlg  = -1;
+
+        function showBubble(txt) {
+            clearTimeout(bubTimer);
+            bubTxt.textContent = txt;
+            bubble.classList.remove('hidden');
+            bubble.classList.add('bubble-pop');
+            bubTimer = setTimeout(() => {
+                bubble.classList.add('hidden');
+                bubble.classList.remove('bubble-pop');
+            }, 3500);
+        }
+
+        function getRandDialogue() {
+            let i;
+            do { i = Math.floor(Math.random() * dialogues.length); } while (i === lastDlg);
+            lastDlg = i;
+            return dialogues[i];
+        }
+
+        // Tap / click
+        el.addEventListener('click', (e) => {
+            e.stopPropagation();
+            el.classList.add('recep-tap');
+            setTimeout(() => el.classList.remove('recep-tap'), 400);
+            showBubble(getRandDialogue());
+        });
+
+        // Auto greet on page-1 becoming active
+        const p1 = document.getElementById('page-1');
+        if (p1) {
+            const obs = new MutationObserver(() => {
+                if (p1.classList.contains('active')) {
+                    setTimeout(() => showBubble(dialogues[0]), 1200);
+                }
+            });
+            obs.observe(p1, { attributes: true, attributeFilter: ['class'] });
+        }
+
+        // Initial greeting
+        setTimeout(() => showBubble(dialogues[0]), 3000);
+    })();
+    </script>
+</html>

@@ -1,0 +1,253 @@
+/* RPG STYLES: UI & ANIMATIONS */
+:root {
+    --card-bg: rgba(26, 26, 26, 0.9);
+    --border-clr: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] {
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --border-clr: rgba(0, 0, 0, 0.1);
+}
+
+/* PAGE 1: WORLD MAP (OPENING) */
+.no-scroll { overflow: hidden !important; }
+
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: radial-gradient(circle at center, rgba(255,62,62,0.1) 0%, transparent 70%);
+}
+
+.rpg-title {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-main);
+    text-shadow: 0 0 20px var(--accent-clr);
+    margin-bottom: 0.5rem;
+    letter-spacing: 5px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.rpg-subtitle {
+    font-size: 0.8rem;
+    color: var(--accent-clr);
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.rpg-flavor-text {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    max-width: 300px;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.p1-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 250px;
+}
+
+.rpg-btn-outline {
+    background: transparent;
+    border: 2px solid var(--accent-clr);
+    color: var(--accent-clr);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.rpg-btn-outline:hover { background: var(--accent-clr); color: white; }
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 360px;
+    animation: scaleIn 0.5s ease-out;
+}
+
+.category-grid.hidden { display: none; }
+
+.cat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-clr);
+    padding: 15px 10px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.cat-card:hover { border-color: var(--clr); transform: translateY(-5px); }
+.cat-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--clr); }
+.cat-icon { font-size: 1.5rem; color: var(--clr); }
+.cat-name { font-size: 0.6rem; font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 1px; }
+
+/* PAGE 2: ARCHIVE (LIST) */
+.nav-btn-highlight {
+    background: var(--accent-clr);
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--accent-clr);
+}
+
+.r-chip, .t-chip {
+    padding: 8px 15px;
+    width: auto;
+    min-width: 40px;
+    height: auto;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid var(--border-clr);
+    white-space: nowrap;
+}
+
+.r-chip.active, .t-chip.active { background: var(--accent-clr); color: white; border-color: var(--accent-clr); }
+
+/* PAGE 3: DETAIL VIEW */
+.detail-nav-static {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0;
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    position: sticky;
+    top: 0;
+    height: 50px;
+    z-index: 1000; /* Lebih tinggi */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border: none !important;
+}
+
+/* Memastikan tidak ada background putih di area atas Page 3 */
+.detail-view {
+    padding-top: 0 !important;
+}
+
+.detail-view .page-container {
+    padding-top: 0 !important;
+}
+
+.detail-nav-static.nav-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.nav-btn-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 2px solid var(--accent-clr);
+    color: var(--accent-clr);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    position: absolute;
+    top: 10px; /* Posisi lebih naik agar pas di dalam sticky header */
+}
+
+.nav-btn-circle.back-to-2 {
+    left: 20px; /* Geser lebih ke kiri */
+}
+
+.nav-btn-circle.back-to-1 {
+    right: 20px; /* Geser lebih ke kanan */
+}
+
+.nav-btn-circle:hover { background: var(--accent-clr); color: white; }
+
+/* MODAL & PATCH */
+.patch-scroll-area {
+    max-height: 300px;
+    overflow-y: auto;
+    text-align: left;
+    padding: 15px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    margin: 15px 0;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    line-height: 1.8;
+}
+
+/* CAROUSEL */
+.carousel-track { display: flex; align-items: center; justify-content: center; gap: 15px; }
+.extra-img {
+    width: 80px; height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    opacity: 0.6;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.extra-img.active {
+    width: 110px; height: 110px;
+    opacity: 1;
+    border-color: var(--accent-clr);
+    box-shadow: 0 0 15px var(--accent-clr);
+}
+
+/* VIEWER OVERLAY */
+.viewer-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.viewer-overlay img { max-width: 100%; max-height: 80vh; border-radius: 10px; border: 2px solid var(--accent-clr); }
+.close-viewer { position: absolute; top: 20px; right: 30px; font-size: 40px; color: white; cursor: pointer; }

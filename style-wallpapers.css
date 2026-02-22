@@ -1,0 +1,535 @@
+/* ================================================
+   FANTASY ANIME WALLPAPERS — PER PAGE & CATEGORY
+   Tiap page & kategori punya vibe berbeda!
+   ================================================ */
+
+/* ── SHARED STAR PARTICLE BASE ── */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50%       { opacity: 1; }
+}
+@keyframes twinkle2 {
+    0%, 100% { opacity: 0.6; }
+    50%       { opacity: 0.15; }
+}
+@keyframes auraPulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50%       { opacity: 0.7; transform: scale(1.05); }
+}
+@keyframes driftUp {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    20%  { opacity: 0.6; }
+    80%  { opacity: 0.4; }
+    100% { transform: translateY(-60px) translateX(15px); opacity: 0; }
+}
+
+/* ════════════════════════════════
+   PAGE 1 — STARFIELD NIGHT SKY
+   Vibe: Pembukaann epic RPG,
+   bintang-bintang di langit malam
+   ════════════════════════════════ */
+#page-1 {
+    background:
+        radial-gradient(ellipse 100% 60% at 50% 0%,   rgba(80,20,180,0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 80%  50% at 80% 100%,  rgba(30,5,80,0.5)   0%, transparent 70%),
+        radial-gradient(ellipse 60%  40% at 10% 70%,   rgba(20,5,60,0.4)   0%, transparent 70%),
+        linear-gradient(170deg, #02000e 0%, #06010f 35%, #0a0320 60%, #050010 100%);
+    position: relative;
+}
+
+/* Star layer A */
+#page-1::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px),
+        radial-gradient(circle, rgba(200,180,255,0.8) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 180px 180px, 130px 130px, 220px 220px, 90px 90px;
+    background-position: 20px 30px, 80px 70px, 5px 120px, 50px 10px;
+    pointer-events: none;
+    z-index: 0;
+    animation: twinkle 4s ease-in-out infinite alternate;
+    opacity: 0.55;
+}
+
+/* Nebula color bloom */
+#page-1::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 40% 30% at 15% 20%, rgba(120,40,220,0.2) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 85% 75%, rgba(60,10,160,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 35% 25% at 50% 50%, rgba(180,60,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: auraPulse 6s ease-in-out infinite;
+}
+
+#page-1 .hero-section {
+    position: relative;
+    z-index: 1;
+}
+
+/* Floating orbs on page 1 */
+.floating-decorations .circle-1 {
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(120,40,220,0.15) 0%, transparent 70%);
+    top: 10%; left: -60px;
+    animation: auraPulse 5s ease-in-out infinite;
+    pointer-events: none;
+}
+.floating-decorations .circle-2 {
+    position: absolute;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(60,10,160,0.12) 0%, transparent 70%);
+    bottom: 15%; right: -80px;
+    animation: auraPulse 7s ease-in-out infinite reverse;
+    pointer-events: none;
+}
+
+/* ════════════════════════════════════════
+   CHARACTER — CRIMSON WARRIOR BATTLEFIELD
+   Vibe: Api, perang, aura kesatria merah
+   ════════════════════════════════════════ */
+.theme-character #page-2,
+.theme-character #page-3 {
+    background:
+        radial-gradient(ellipse 100% 50% at 50% 0%,   rgba(180,10,10,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 60%  40% at 0%   80%,  rgba(120,5,5,0.3)   0%, transparent 70%),
+        radial-gradient(ellipse 50%  30% at 100% 30%,  rgba(200,40,0,0.2)  0%, transparent 70%),
+        linear-gradient(175deg, #0d0202 0%, #160505 30%, #0f0303 60%, #080101 100%);
+    position: relative;
+}
+
+.theme-character #page-2::before,
+.theme-character #page-3::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(255,80,30,0.7) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,150,50,0.5) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,60,0,0.6)  1px, transparent 1px);
+    background-size: 160px 160px, 110px 110px, 200px 200px;
+    background-position: 30px 40px, 70px 60px, 10px 130px;
+    pointer-events: none;
+    z-index: 0;
+    animation: twinkle2 3s ease-in-out infinite alternate;
+    opacity: 0.4;
+    display: block !important;
+}
+
+.theme-character #page-2::after,
+.theme-character #page-3::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            transparent 0px,
+            transparent 80px,
+            rgba(180,10,10,0.03) 80px,
+            rgba(180,10,10,0.03) 81px
+        ),
+        radial-gradient(ellipse 50% 30% at 80% 80%, rgba(200,20,0,0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    display: block !important;
+}
+
+/* ════════════════════════════════════════
+   MONSTER — DARK HAUNTED FOREST / ABYSS
+   Vibe: Hutan gelap, kabut ungu, mistis
+   ════════════════════════════════════════ */
+.theme-monster #page-2,
+.theme-monster #page-3 {
+    background:
+        radial-gradient(ellipse 80%  60% at 50% -10%, rgba(80,20,150,0.4)  0%, transparent 65%),
+        radial-gradient(ellipse 60%  50% at 10% 90%,  rgba(50,0,100,0.35)  0%, transparent 70%),
+        radial-gradient(ellipse 40%  30% at 90% 50%,  rgba(100,30,180,0.2) 0%, transparent 70%),
+        linear-gradient(180deg, #07030f 0%, #0d0519 40%, #080010 70%, #040008 100%);
+    position: relative;
+}
+
+.theme-monster #page-2::before,
+.theme-monster #page-3::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(160,80,255,0.6)  1px, transparent 1px),
+        radial-gradient(circle, rgba(100,50,200,0.5)  1px, transparent 1px),
+        radial-gradient(circle, rgba(200,100,255,0.4) 1px, transparent 1px),
+        radial-gradient(circle, rgba(80,0,160,0.7)    1px, transparent 1px);
+    background-size: 140px 140px, 190px 190px, 100px 100px, 250px 250px;
+    background-position: 20px 50px, 90px 20px, 5px 90px, 140px 140px;
+    pointer-events: none;
+    z-index: 0;
+    animation: twinkle 5s ease-in-out infinite alternate;
+    opacity: 0.5;
+    display: block !important;
+}
+
+.theme-monster #page-2::after,
+.theme-monster #page-3::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 40% at 50% 60%, rgba(60,10,120,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 40%, rgba(40,0,80,0.2)    0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 80% 20%, rgba(100,20,200,0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: auraPulse 8s ease-in-out infinite;
+    display: block !important;
+}
+
+/* ═══════════════════════════════════════
+   PET — SAKURA GARDEN / ENCHANTED GROVE
+   Vibe: Taman sakura, pink lembut, manis
+   ═══════════════════════════════════════ */
+.theme-pet #page-2,
+.theme-pet #page-3 {
+    background:
+        radial-gradient(ellipse 100% 50% at 50% 0%,  rgba(200,30,100,0.3)  0%, transparent 60%),
+        radial-gradient(ellipse 70%  50% at 0%  70%,  rgba(160,20,80,0.25)  0%, transparent 70%),
+        radial-gradient(ellipse 60%  40% at 100% 40%, rgba(220,60,140,0.2)  0%, transparent 70%),
+        linear-gradient(175deg, #0f0209 0%, #180510 35%, #100208 60%, #090106 100%);
+    position: relative;
+}
+
+.theme-pet #page-2::before,
+.theme-pet #page-3::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(255,140,180,0.7) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,100,160,0.5) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,180,200,0.6) 1px, transparent 1px),
+        radial-gradient(circle, rgba(220,80,140,0.5)  1px, transparent 1px);
+    background-size: 120px 120px, 170px 170px, 90px 90px, 200px 200px;
+    background-position: 15px 35px, 80px 10px, 5px 80px, 110px 110px;
+    pointer-events: none;
+    z-index: 0;
+    animation: twinkle 3.5s ease-in-out infinite alternate;
+    opacity: 0.55;
+    display: block !important;
+}
+
+.theme-pet #page-2::after,
+.theme-pet #page-3::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 40% at 30% 30%, rgba(255,100,160,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 70% 70%, rgba(200,50,120,0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: auraPulse 6s ease-in-out infinite reverse;
+    display: block !important;
+}
+
+/* ════════════════════════════════════════
+   ITEM — ANCIENT DUNGEON / TREASURE VAULT
+   Vibe: Gua harta, emerald, permata hijau
+   ════════════════════════════════════════ */
+.theme-item #page-2,
+.theme-item #page-3 {
+    background:
+        radial-gradient(ellipse 90%  50% at 50% 0%,  rgba(10,80,20,0.4)   0%, transparent 60%),
+        radial-gradient(ellipse 60%  50% at 5%  80%,  rgba(5,60,10,0.35)   0%, transparent 70%),
+        radial-gradient(ellipse 50%  35% at 95% 40%,  rgba(20,100,30,0.25) 0%, transparent 70%),
+        linear-gradient(175deg, #020a03 0%, #041208 35%, #030d04 60%, #010601 100%);
+    position: relative;
+}
+
+.theme-item #page-2::before,
+.theme-item #page-3::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(50,220,80,0.6)   1px, transparent 1px),
+        radial-gradient(circle, rgba(100,255,120,0.5)  1px, transparent 1px),
+        radial-gradient(circle, rgba(180,255,100,0.4)  1px, transparent 1px),
+        radial-gradient(circle, rgba(218,165,32,0.5)   1px, transparent 1px);
+    background-size: 150px 150px, 110px 110px, 200px 200px, 130px 130px;
+    background-position: 25px 45px, 60px 80px, 5px 100px, 100px 30px;
+    pointer-events: none;
+    z-index: 0;
+    animation: twinkle2 4s ease-in-out infinite alternate;
+    opacity: 0.45;
+    display: block !important;
+}
+
+.theme-item #page-2::after,
+.theme-item #page-3::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            60deg,
+            transparent 0px,
+            transparent 100px,
+            rgba(20,100,30,0.04) 100px,
+            rgba(20,100,30,0.04) 101px
+        ),
+        radial-gradient(ellipse 40% 40% at 50% 80%, rgba(218,165,32,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    display: block !important;
+}
+
+/* ═══════════════════════════════════════
+   MAGIC — COSMIC ARCANE / CELESTIAL REALM
+   Vibe: Luar angkasa, runic, biru elektrik
+   ═══════════════════════════════════════ */
+.theme-magic #page-2,
+.theme-magic #page-3 {
+    background:
+        radial-gradient(ellipse 100% 60% at 50% 0%,   rgba(20,40,180,0.45) 0%, transparent 60%),
+        radial-gradient(ellipse 70%  50% at 5%   70%,  rgba(10,20,120,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 60%  40% at 100% 40%,  rgba(30,60,200,0.25) 0%, transparent 70%),
+        linear-gradient(175deg, #010210 0%, #020518 35%, #010310 60%, #010208 100%);
+    position: relative;
+}
+
+.theme-magic #page-2::before,
+.theme-magic #page-3::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(100,150,255,0.8)  1px, transparent 1px),
+        radial-gradient(circle, rgba(60,100,255,0.6)   1px, transparent 1px),
+        radial-gradient(circle, rgba(180,200,255,0.5)  1px, transparent 1px),
+        radial-gradient(circle, rgba(50,80,220,0.7)    1px, transparent 1px),
+        radial-gradient(circle, rgba(220,230,255,0.4)  1px, transparent 1px);
+    background-size: 130px 130px, 180px 180px, 95px 95px, 220px 220px, 70px 70px;
+    background-position: 20px 40px, 80px 15px, 8px 85px, 120px 120px, 45px 65px;
+    pointer-events: none;
+    z-index: 0;
+    animation: twinkle 3s ease-in-out infinite alternate;
+    opacity: 0.6;
+    display: block !important;
+}
+
+.theme-magic #page-2::after,
+.theme-magic #page-3::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 40% at 50% 50%, rgba(30,50,200,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 60% at 10% 30%, rgba(20,30,150,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 50% at 90% 70%, rgba(40,70,220,0.15) 0%, transparent 70%),
+        repeating-linear-gradient(
+            30deg,
+            transparent 0px,
+            transparent 120px,
+            rgba(30,60,200,0.03) 120px,
+            rgba(30,60,200,0.03) 121px
+        );
+    pointer-events: none;
+    z-index: 0;
+    animation: auraPulse 7s ease-in-out infinite;
+    display: block !important;
+}
+
+/* ═══════════════════════════════════════════
+   AREA — GOLDEN ANCIENT RUINS / EXPLORER MAP
+   Vibe: Reruntuhan kuno, amber, petualangan
+   ═══════════════════════════════════════════ */
+.theme-area #page-2,
+.theme-area #page-3 {
+    background:
+        radial-gradient(ellipse 90%  50% at 50% 0%,   rgba(150,90,10,0.4)  0%, transparent 60%),
+        radial-gradient(ellipse 60%  50% at 0%  70%,   rgba(100,60,5,0.35)  0%, transparent 70%),
+        radial-gradient(ellipse 50%  35% at 100% 40%,  rgba(180,110,10,0.2) 0%, transparent 70%),
+        linear-gradient(175deg, #0a0600 0%, #100900 35%, #0a0500 60%, #060300 100%);
+    position: relative;
+}
+
+.theme-area #page-2::before,
+.theme-area #page-3::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(218,165,32,0.7)  1px, transparent 1px),
+        radial-gradient(circle, rgba(255,200,50,0.5)  1px, transparent 1px),
+        radial-gradient(circle, rgba(200,140,20,0.6)  1px, transparent 1px),
+        radial-gradient(circle, rgba(255,180,0,0.4)   1px, transparent 1px);
+    background-size: 145px 145px, 110px 110px, 190px 190px, 80px 80px;
+    background-position: 30px 50px, 70px 20px, 10px 110px, 50px 70px;
+    pointer-events: none;
+    z-index: 0;
+    animation: twinkle2 4.5s ease-in-out infinite alternate;
+    opacity: 0.45;
+    display: block !important;
+}
+
+.theme-area #page-2::after,
+.theme-area #page-3::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            transparent 0px,
+            transparent 90px,
+            rgba(150,90,10,0.04) 90px,
+            rgba(150,90,10,0.04) 91px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent 0px,
+            transparent 90px,
+            rgba(150,90,10,0.03) 90px,
+            rgba(150,90,10,0.03) 91px
+        ),
+        radial-gradient(ellipse 50% 30% at 80% 80%, rgba(218,165,32,0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    display: block !important;
+}
+
+/* ════════════════════════════════
+   LIGHT MODE OVERRIDES — RICH FANTASY
+   ════════════════════════════════ */
+[data-theme="light"] #page-1 {
+    background:
+        radial-gradient(ellipse 80% 50% at 20% 20%, rgba(200,150,255,0.2) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(150,180,255,0.2) 0%, transparent 60%),
+        linear-gradient(175deg, #f5f0ff 0%, #ede8ff 40%, #f8f5ff 100%) !important;
+}
+[data-theme="light"] #page-1::before {
+    background-image:
+        radial-gradient(circle, rgba(160,80,255,0.3) 1px, transparent 1px),
+        radial-gradient(circle, rgba(80,120,255,0.2) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,80,180,0.2) 1px, transparent 1px);
+    background-size: 130px 130px, 190px 190px, 100px 100px;
+    background-position: 20px 30px, 80px 70px, 5px 90px;
+    opacity: 0.5 !important;
+    display: block !important;
+}
+[data-theme="light"] #page-1::after {
+    display: block !important;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            transparent 0px,
+            transparent 80px,
+            rgba(160,80,255,0.04) 80px,
+            rgba(160,80,255,0.04) 81px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent 0px,
+            transparent 80px,
+            rgba(80,120,255,0.03) 80px,
+            rgba(80,120,255,0.03) 81px
+        );
+    opacity: 1 !important;
+}
+
+[data-theme="light"].theme-character #page-2,
+[data-theme="light"].theme-character #page-3 {
+    background:
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255,100,80,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 100% 100%, rgba(220,50,30,0.08) 0%, transparent 60%),
+        linear-gradient(175deg, #fff5f5 0%, #ffe8e8 50%, #fff0f0 100%) !important;
+}
+[data-theme="light"].theme-monster #page-2,
+[data-theme="light"].theme-monster #page-3 {
+    background:
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(160,80,255,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 0% 100%, rgba(100,40,200,0.08) 0%, transparent 60%),
+        linear-gradient(175deg, #f8f5ff 0%, #ede5ff 50%, #f5f0ff 100%) !important;
+}
+[data-theme="light"].theme-pet #page-2,
+[data-theme="light"].theme-pet #page-3 {
+    background:
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255,80,160,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 100% 100%, rgba(220,40,120,0.08) 0%, transparent 60%),
+        linear-gradient(175deg, #fff5fa 0%, #ffe8f3 50%, #fff0f8 100%) !important;
+}
+[data-theme="light"].theme-item #page-2,
+[data-theme="light"].theme-item #page-3 {
+    background:
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(40,180,60,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 0% 100%, rgba(218,165,32,0.08) 0%, transparent 60%),
+        linear-gradient(175deg, #f5fff7 0%, #e8ffe9 50%, #f0fff2 100%) !important;
+}
+[data-theme="light"].theme-magic #page-2,
+[data-theme="light"].theme-magic #page-3 {
+    background:
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(60,100,255,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 100% 100%, rgba(30,60,200,0.08) 0%, transparent 60%),
+        linear-gradient(175deg, #f5f8ff 0%, #e8eeff 50%, #f0f5ff 100%) !important;
+}
+[data-theme="light"].theme-area #page-2,
+[data-theme="light"].theme-area #page-3 {
+    background:
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(200,140,10,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 0% 100%, rgba(180,110,10,0.08) 0%, transparent 60%),
+        linear-gradient(175deg, #fffaf0 0%, #fff3d6 50%, #fff8e8 100%) !important;
+}
+
+/* Light mode: shared soft dot pattern on page 2 & 3 */
+[data-theme="light"] #page-2::before,
+[data-theme="light"] #page-3::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(var(--accent-rgb),0.15) 1px, transparent 1px),
+        radial-gradient(circle, rgba(var(--accent-rgb),0.08) 1px, transparent 1px);
+    background-size: 120px 120px, 80px 80px;
+    background-position: 30px 30px, 15px 15px;
+    pointer-events: none;
+    z-index: 0;
+    display: block !important;
+    opacity: 0.8;
+}
+/* Light mode diagonal lines subtle */
+[data-theme="light"] #page-2::after,
+[data-theme="light"] #page-3::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            60deg,
+            transparent 0px,
+            transparent 100px,
+            rgba(var(--accent-rgb),0.04) 100px,
+            rgba(var(--accent-rgb),0.04) 101px
+        );
+    pointer-events: none;
+    z-index: 0;
+    display: block !important;
+}
+
+/* ════════════════════════════
+   Z-INDEX GUARD: Content above bg layers
+   JANGAN sentuh detail-nav-static (position:fixed z-index:100)
+   ════════════════════════════ */
+#page-2 .page-container,
+#page-3 .page-container {
+    position: relative;
+    z-index: 2;
+}

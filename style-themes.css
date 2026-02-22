@@ -1,0 +1,217 @@
+/* THEME SPECIFIC COLORS - UPDATED SESUAI INSTRUKSI */
+/* 
+-CHARACTER : SCARLET (#FF2400)
+-MONSTER : ROYAL PURPLE (#7851A9)
+-MAGIC : ROYAL BLUE (#4169E1)
+-PET : DEEP PINK (#FF1493)
+-AREA : GOLDENROD (#DAA520)
+-ITEM : FOREST GREEN (#228B22)
+*/
+
+.theme-character { --accent-clr: #FF2400; } /* SCARLET */
+.theme-monster { --accent-clr: #7851A9; } /* ROYAL PURPLE */
+.theme-magic { --accent-clr: #4169E1; } /* ROYAL BLUE */
+.theme-pet { --accent-clr: #FF1493; } /* DEEP PINK */
+.theme-area { --accent-clr: #DAA520; } /* GOLDENROD */
+.theme-item { --accent-clr: #228B22; } /* FOREST GREEN */
+
+/* Category Item Styling overrides */
+.cat-card[data-category="Character"] .cat-icon { color: #FF2400; }
+.cat-card[data-category="Monster"] .cat-icon { color: #7851A9; }
+.cat-card[data-category="Magic"] .cat-icon { color: #4169E1; }
+.cat-card[data-category="Pet"] .cat-icon { color: #FF1493; }
+.cat-card[data-category="Area"] .cat-icon { color: #DAA520; }
+.cat-card[data-category="Item"] .cat-icon { color: #228B22; }
+
+/* Dark/Light Transition */
+body, .page, .rpg-header, .unit-card, .cat-card, .rpg-box, .modal-content {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
+/* REVISI 5: LIGHT MODE FULL ADAPTATION (PAGE 2 & 3) */
+[data-theme="light"] {
+    --primary-bg: #ffffff;
+    --secondary-bg: #ffffff;
+    --text-main: #000000;
+    --text-muted: #1a1a1a;
+    --card-bg: #ffffff;
+    --border-clr: #000000;
+}
+
+/* HIGH CONTRAST COLORS FOR LIGHT MODE - AUTO SWITCH GELAP */
+[data-theme="light"].theme-character { --accent-clr: #8B0000; --accent-rgb: 139, 0, 0; } /* Darker Scarlet */
+[data-theme="light"].theme-monster { --accent-clr: #4B0082; --accent-rgb: 75, 0, 130; } /* Darker Purple */
+[data-theme="light"].theme-magic { --accent-clr: #00008B; --accent-rgb: 0, 0, 139; } /* Darker Blue */
+[data-theme="light"].theme-pet { --accent-clr: #C71585; --accent-rgb: 199, 21, 133; } /* Darker Pink */
+[data-theme="light"].theme-area { --accent-clr: #8B6508; --accent-rgb: 139, 101, 8; } /* Darker Goldenrod */
+[data-theme="light"].theme-item { --accent-clr: #006400; --accent-rgb: 0, 100, 0; } /* Darker Green */
+
+[data-theme="light"] body {
+    background-color: var(--primary-bg);
+    color: var(--text-main);
+}
+
+[data-theme="light"] .rpg-box {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+[data-theme="light"] .rpg-box p {
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .box-header {
+    background: var(--accent-clr);
+    color: white !important;
+    font-weight: 800;
+}
+
+[data-theme="light"] .unit-bio h3 {
+    color: #666666;
+}
+
+[data-theme="light"] .unit-bio h1 {
+    color: var(--accent-clr);
+}
+
+[data-theme="light"] .tag {
+    background: #ffffff;
+    border: 2px solid var(--accent-clr);
+    color: var(--accent-clr);
+    font-weight: 900;
+}
+
+[data-theme="light"] .rpg-subtitle {
+    color: var(--accent-clr);
+    font-weight: 900;
+}
+
+[data-theme="light"] .detail-nav-static {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+[data-theme="light"] .page {
+    background-color: #ffffff !important;
+}
+
+[data-theme="light"] .rpg-header {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+[data-theme="light"] .header-nav h2 {
+    color: var(--accent-clr);
+}
+
+[data-theme="light"] .rpg-search-box {
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .rpg-search-box input {
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .rpg-search-box input::placeholder {
+    color: #999999;
+}
+
+[data-theme="light"] .unit-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+[data-theme="light"] .unit-info .name {
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .unit-rarity {
+    background: var(--accent-clr);
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+[data-theme="light"] .modal-content {
+    background: #ffffff;
+    border: 2px solid var(--accent-clr);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+[data-theme="light"] .modal-content h3 {
+    color: var(--accent-clr);
+}
+
+[data-theme="light"] .m-cat {
+    background: #f8f9fa;
+    color: #1a1a1a;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .m-cat:hover {
+    background: var(--accent-clr);
+    color: white;
+    border-color: var(--accent-clr);
+}
+
+[data-theme="light"] .filter-panel {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px dashed rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .r-chip,
+[data-theme="light"] .t-chip {
+    background: #ffffff;
+    color: #333333;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .r-chip.active,
+[data-theme="light"] .t-chip.active {
+    background: var(--accent-clr);
+    color: white;
+    border-color: var(--accent-clr);
+}
+
+[data-theme="light"] .patch-scroll-area {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .nav-btn-circle {
+    background: #ffffff;
+    border: 2px solid var(--accent-clr);
+    color: var(--accent-clr);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Fix for Page 3 light mode bug */
+[data-theme="light"] .detail-view {
+    background: var(--primary-bg);
+}
+
+[data-theme="light"] .image-frame {
+    background: #ffffff;
+    border-color: rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] .story-box {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] .extra-img {
+    border-color: rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] .extra-img.active {
+    border-color: var(--accent-clr);
+}

@@ -1,0 +1,150 @@
+/* CORE CSS: LAYOUT & RESET */
+:root {
+    --primary-bg: #0d0d0d;
+    --secondary-bg: #1a1a1a;
+    --accent-clr: #ff3e3e;
+    --text-main: #ffffff;
+    --text-muted: #888888;
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --safe-area: 20px;
+}
+
+[data-theme="light"] {
+    --primary-bg: #f5f5f5;
+    --secondary-bg: #ffffff;
+    --text-main: #1a1a1a;
+    --text-muted: #666666;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Exo 2', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+    transition: background-color 0.5s ease;
+}
+
+/* PAGE SYSTEM - FIX SCROLL BUG */
+.page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    display: none;
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    padding-top: 60px; /* Space for HUD */
+    padding-bottom: 40px;
+}
+
+.page.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+    z-index: 10;
+}
+
+.page-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 var(--safe-area);
+}
+
+.hidden { display: none !important; }
+
+/* TOP HUD */
+#top-hud {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    color: var(--accent-clr);
+}
+
+#theme-toggle {
+    background: transparent;
+    border: 1px solid var(--accent-clr);
+    color: var(--accent-clr);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* BUTTONS */
+.rpg-btn {
+    padding: 15px 35px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    background: var(--accent-clr);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 15px var(--accent-clr);
+    transition: var(--transition);
+}
+
+.rpg-btn.glow:hover {
+    box-shadow: 0 0 30px var(--accent-clr);
+    transform: translateY(-2px);
+}
+
+.rpg-btn-small {
+    padding: 8px 15px;
+    font-size: 0.7rem;
+    background: transparent;
+    border: 1px solid var(--accent-clr);
+    color: var(--accent-clr);
+    border-radius: 4px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* LOADING SCREEN */
+.loading-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+
+.rpg-loader { text-align: center; }
+.loader-circle {
+    width: 60px;
+    height: 60px;
+    border: 3px solid transparent;
+    border-top: 3px solid var(--accent-clr);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
