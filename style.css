@@ -467,18 +467,9 @@ body {
 
 .unit-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
 .unit-info { padding: 6px; text-align: center; }
-.unit-info .name { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.unit-info .name { /* overridden below in page-2 redesign */ }
 
-.unit-rarity {
-    position: absolute; top: 5px; right: 5px;
-    background: var(--accent-clr);
-    color: #ffffff !important;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 2px 6px; border-radius: 4px; font-size: 0.6rem; font-weight: 900;
-    z-index: 10;
-    font-family: 'Orbitron', sans-serif;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-}
+.unit-rarity { /* overridden below in page-2 redesign */ }
 
 /* PAGE 3: DETAIL - REVISI 3: AUTO HIDE/SHOW NAV */
 .detail-nav-static {
@@ -1068,41 +1059,42 @@ body {
 /* receptionist removed */
 
 /* ================================================
-   PAGE 2 — TOTAL REDESIGN: MODERN FANTASY LIST
-   Konsep baru: landscape card dengan gambar kiri,
-   info kanan, accent sidebar per kategori
+   PAGE 2 — ROMBAK TOTAL v3
+   Konsep: 2 kolom, card gede, font gede, terbaca
    ================================================ */
 
-/* ── TOP BAR ── */
+/* ── HEADER ── */
 .rpg-header {
     position: sticky !important;
     top: 0 !important;
     z-index: 50 !important;
-    background: rgba(6, 3, 14, 0.88) !important;
-    backdrop-filter: blur(20px) !important;
-    border-bottom: 1px solid rgba(var(--accent-rgb), 0.25) !important;
-    padding: 10px 14px 0 14px !important;
+    background: rgba(5, 2, 12, 0.92) !important;
+    backdrop-filter: blur(24px) !important;
+    border: none !important;
+    border-bottom: 2px solid rgba(var(--accent-rgb), 0.4) !important;
     border-radius: 0 !important;
+    padding: 12px 16px 0 !important;
     margin-bottom: 0 !important;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.6) !important;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.7) !important;
 }
 
+/* Top bar */
 .p2-topbar {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
 .p2-back-btn {
-    background: rgba(var(--accent-rgb), 0.1);
-    border: 1px solid rgba(var(--accent-rgb), 0.35);
+    background: rgba(var(--accent-rgb), 0.12);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.5);
     color: var(--accent-clr);
-    width: 34px; height: 34px;
-    border-radius: 10px;
+    width: 40px; height: 40px;
+    border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 1rem;
     flex-shrink: 0;
     transition: 0.2s ease;
 }
@@ -1112,66 +1104,66 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 2px;
 }
 .p2-realm-label {
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.45rem;
-    letter-spacing: 3px;
-    color: rgba(var(--accent-rgb), 0.6);
+    font-size: 0.55rem;
+    letter-spacing: 4px;
+    color: rgba(var(--accent-rgb), 0.55);
     text-transform: uppercase;
 }
 .p2-title-wrap h2 {
     font-family: 'Cinzel', serif !important;
-    font-size: 1.1rem !important;
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
     color: #fff !important;
-    letter-spacing: 1px !important;
+    letter-spacing: 2px !important;
     line-height: 1 !important;
-    text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.35) !important;
     margin: 0 !important;
+    text-shadow: 0 0 25px rgba(var(--accent-rgb), 0.5) !important;
 }
 
 .p2-realm-btn {
     background: rgba(var(--accent-rgb), 0.12);
-    border: 1px solid rgba(var(--accent-rgb), 0.4);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.5);
     color: var(--accent-clr);
-    width: 34px; height: 34px;
-    border-radius: 10px;
+    width: 40px; height: 40px;
+    border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 1rem;
     flex-shrink: 0;
     transition: 0.2s ease;
 }
 .p2-realm-btn:hover { background: var(--accent-clr); color: #fff; }
 
-/* ── SEARCH ROW ── */
+/* Search */
 .p2-search-row {
     display: flex;
-    gap: 8px;
-    margin-bottom: 8px;
+    gap: 10px;
+    margin-bottom: 10px;
 }
-
 .p2-search-box {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(var(--accent-rgb), 0.2);
-    border-radius: 50px;
-    padding: 0 14px;
-    height: 38px;
+    gap: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.25);
+    border-radius: 14px;
+    padding: 0 16px;
+    height: 44px;
     transition: 0.25s ease;
 }
 .p2-search-box:focus-within {
     border-color: var(--accent-clr);
-    background: rgba(var(--accent-rgb), 0.07);
-    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1);
+    background: rgba(var(--accent-rgb), 0.08);
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12);
 }
 .p2-search-box i {
-    color: rgba(var(--accent-rgb), 0.5);
-    font-size: 0.75rem;
+    color: rgba(var(--accent-rgb), 0.6);
+    font-size: 0.9rem;
     flex-shrink: 0;
 }
 .p2-search-box input {
@@ -1179,92 +1171,94 @@ body {
     border: none;
     outline: none;
     color: #fff;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     width: 100%;
     font-family: 'Exo 2', sans-serif;
 }
-.p2-search-box input::placeholder { color: rgba(255,255,255,0.3); }
+.p2-search-box input::placeholder { color: rgba(255,255,255,0.28); }
 
 .p2-filter-btn {
-    width: 38px; height: 38px;
-    border-radius: 50%;
+    width: 44px; height: 44px;
+    border-radius: 14px;
     background: rgba(var(--accent-rgb), 0.1);
-    border: 1px solid rgba(var(--accent-rgb), 0.35);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.4);
     color: var(--accent-clr);
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 1rem;
     flex-shrink: 0;
     transition: 0.2s ease;
 }
-.p2-filter-btn:hover, .p2-filter-btn.active { background: var(--accent-clr); color: #fff; }
+.p2-filter-btn:hover { background: var(--accent-clr); color: #fff; }
 
-/* ── COUNT BAR ── */
+/* Count bar */
 .p2-count-bar {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 2px;
-    border-top: 1px solid rgba(var(--accent-rgb), 0.1);
+    gap: 8px;
+    padding: 8px 2px;
+    border-top: 1px solid rgba(var(--accent-rgb), 0.12);
 }
 .p2-count-dot {
-    width: 6px; height: 6px;
+    width: 7px; height: 7px;
     border-radius: 50%;
     background: var(--accent-clr);
+    box-shadow: 0 0 6px var(--accent-clr);
     animation: pulseDot 2s ease-in-out infinite;
+    flex-shrink: 0;
 }
 @keyframes pulseDot {
     0%,100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.7); }
+    50% { opacity: 0.3; transform: scale(0.6); }
 }
 #p2-count-text {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.5rem;
-    color: rgba(var(--accent-rgb), 0.7);
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.45);
     letter-spacing: 1px;
 }
 
-/* ── GRID: 3 kolom tetap seperti sebelumnya tapi dengan style baru ── */
+/* ── GRID: 2 KOLOM ── */
 .unit-grid {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 8px !important;
-    padding: 12px 10px 90px !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    padding: 14px 14px 100px !important;
 }
 
-/* ── UNIT CARD — REDESIGN TOTAL ── */
-/* Sebelumnya plain card, sekarang: frame dengan corner accent */
+/* ── UNIT CARD ── */
 .unit-card {
     position: relative !important;
-    background: rgba(10, 5, 20, 0.9) !important;
-    border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
-    border-radius: 10px !important;
+    background: #0a0514 !important;
+    border: 1px solid rgba(var(--accent-rgb), 0.2) !important;
+    border-radius: 16px !important;
     overflow: hidden !important;
     cursor: pointer !important;
-    transition:
-        transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275),
-        box-shadow 0.3s ease !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+    transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow 0.3s ease, border-color 0.3s ease !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6) !important;
 }
 
-/* Top accent line — warna ikut kategori via --accent-clr */
+/* Left accent bar — tebal, warna kategori */
 .unit-card::before {
     content: '' !important;
     position: absolute !important;
-    top: 0 !important; left: 0 !important; right: 0 !important;
-    height: 2px !important;
-    background: linear-gradient(90deg, var(--accent-clr), rgba(var(--accent-rgb),0)) !important;
-    z-index: 3 !important;
+    top: 0 !important; left: 0 !important; bottom: 0 !important;
+    width: 3px !important;
+    background: var(--accent-clr) !important;
+    z-index: 5 !important;
+    opacity: 0.8 !important;
 }
 
-/* Bottom glow reflection */
+/* Bottom dark fade over image */
 .unit-card::after {
     content: '' !important;
     position: absolute !important;
     bottom: 0 !important; left: 0 !important; right: 0 !important;
-    height: 40% !important;
+    height: 55% !important;
     background: linear-gradient(to top,
-        rgba(var(--accent-rgb), 0.08) 0%,
+        rgba(5,2,15,1) 0%,
+        rgba(5,2,15,0.7) 40%,
         transparent 100%
     ) !important;
     z-index: 2 !important;
@@ -1272,62 +1266,68 @@ body {
 }
 
 .unit-card:hover {
-    transform: translateY(-5px) scale(1.03) !important;
+    transform: translateY(-6px) scale(1.025) !important;
+    border-color: rgba(var(--accent-rgb), 0.6) !important;
     box-shadow:
-        0 10px 28px rgba(var(--accent-rgb), 0.22),
-        0 3px 8px rgba(0,0,0,0.6) !important;
-    border-color: rgba(var(--accent-rgb), 0.5) !important;
+        0 16px 36px rgba(var(--accent-rgb), 0.25),
+        0 4px 10px rgba(0,0,0,0.7) !important;
 }
 
-/* Image */
+/* Image — taller */
 .unit-card img {
     width: 100% !important;
-    aspect-ratio: 3/4 !important;
+    aspect-ratio: 2/3 !important;
     object-fit: cover !important;
+    object-position: top center !important;
     display: block !important;
-    position: relative !important;
     z-index: 1 !important;
+    position: relative !important;
 }
 
-/* Name label at bottom */
+/* Info overlay — di atas gambar, di bawah fade */
 .unit-info {
-    position: relative !important;
+    position: absolute !important;
+    bottom: 0 !important; left: 0 !important; right: 0 !important;
     z-index: 3 !important;
-    padding: 5px 5px 6px !important;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%) !important;
+    padding: 10px 12px 12px 14px !important;
+    background: transparent !important;
 }
+
 .unit-info .name {
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: 0.5rem !important;
+    font-family: 'Cinzel', serif !important;
+    font-size: 0.85rem !important;
     font-weight: 700 !important;
+    color: #ffffff !important;
+    text-transform: none !important;
     letter-spacing: 0.5px !important;
-    color: rgba(255,255,255,0.9) !important;
-    text-transform: uppercase !important;
+    line-height: 1.25 !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    text-align: center !important;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.9) !important;
+    display: block !important;
 }
 
-/* Rarity badge — top left, pill shape */
+/* Rarity badge — bottom right */
 .unit-rarity {
     position: absolute !important;
-    top: 5px !important;
-    left: 5px !important;
-    right: auto !important;
-    background: rgba(0,0,0,0.7) !important;
+    bottom: 10px !important;
+    right: 10px !important;
+    top: auto !important;
+    left: auto !important;
+    background: rgba(var(--accent-rgb), 0.2) !important;
     color: var(--accent-clr) !important;
-    border: 1px solid rgba(var(--accent-rgb), 0.6) !important;
-    padding: 1px 6px !important;
+    border: 1.5px solid var(--accent-clr) !important;
+    padding: 3px 9px !important;
     border-radius: 20px !important;
-    font-size: 0.5rem !important;
+    font-size: 0.65rem !important;
     font-weight: 900 !important;
     font-family: 'Orbitron', sans-serif !important;
-    letter-spacing: 0.5px !important;
-    z-index: 10 !important;
-    backdrop-filter: blur(4px) !important;
-    text-shadow: none !important;
-    box-shadow: none !important;
+    letter-spacing: 1px !important;
+    z-index: 4 !important;
+    backdrop-filter: blur(6px) !important;
+    text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.6) !important;
+    box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.3) !important;
 }
 
 /* ================================================
