@@ -447,6 +447,11 @@ function renderArchive() {
         const matchTags = filters.tags && filters.tags.length > 0 ? filters.tags.every(t => u.tags && u.tags.includes(t)) : true;
         return matchCat && matchSearch && matchRarity && matchTags;
     });
+
+    // Update count bar
+    const countEl = document.getElementById('p2-count-text');
+    if (countEl) countEl.textContent = `${filtered.length} legends found`;
+
     grid.innerHTML = filtered.map(u => `
         <div class="unit-card" onclick="showLegendDetail('${u.name.replace(/'/g, "\\'")}')">
             <div style="position:relative">
@@ -544,106 +549,103 @@ document.getElementById('page-3').addEventListener('scroll', function() {
 
 init();
 
-/* FULL AUTO WATERMARK GRID - ANTI-AI RESISTANT - 50-70% COVERAGE */
+/* WATERMARK — PROPERLY SPACED, NO TEXT OVERLAP */
 function addWatermarkToImage(canvas, ctx) {
-    const watermarkText = 'TikTok : ainime.id';
+    const mainText  = 'TikTok : ainime.id';
+    const shortText = 'ainime.id';
     const w = canvas.width;
     const h = canvas.height;
 
-    // ── LAYER 1: Dense diagonal text grid (main coverage ~40%) ──
-    const fontSize1 = Math.max(w / 22, 11);
+    // ── Measure helper ──
+    function measure(font, text) {
+        ctx.font = font;
+        return ctx.measureText(text).width;
+    }
+
     ctx.save();
-    ctx.rotate(-35 * Math.PI / 180);
-    ctx.font = `bold ${fontSize1}px Orbitron, Arial, sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    const stepX1 = w / 2.8;
-    const stepY1 = h / 5;
+
+    // ── LAYER 1: Main diagonal grid — 30° tilt, generous spacing ──
+    const fs1   = Math.max(Math.min(w / 20, 20), 9);
+    const font1 = `bold ${fs1}px Orbitron, Arial, sans-serif`;
+    const tw1   = measure(font1, mainText);
+    // Gap between cols = 1.5× text width (never overlap)
+    const gapX1  = tw1 * 1.5;
+    const stepX1 = tw1 + gapX1;
+    // Gap between rows = 3.5× font size
+    const stepY1 = fs1 * 3.5;
+
+    ctx.font          = font1;
+    ctx.textAlign     = 'left';
+    ctx.textBaseline  = 'middle';
+    ctx.rotate(-30 * Math.PI / 180);
+
     for (let x = -w * 1.5; x < w * 2.5; x += stepX1) {
-        for (let y = -h; y < h * 2; y += stepY1) {
-            ctx.globalAlpha = 0.28;
-            ctx.fillStyle = 'rgba(255,255,255,1)';
-            ctx.fillText(watermarkText, x, y);
-            // Slight color shadow offset for anti-AI
-            ctx.globalAlpha = 0.10;
-            ctx.fillStyle = 'rgba(0,0,0,1)';
-            ctx.fillText(watermarkText, x + 2, y + 2);
+        for (let y = -h; y < h * 2.5; y += stepY1) {
+            ctx.globalAlpha = 0.20;
+            ctx.fillStyle   = '#ffffff';
+            ctx.fillText(mainText, x, y);
+            ctx.globalAlpha = 0.07;
+            ctx.fillStyle   = '#000000';
+            ctx.fillText(mainText, x + 1.5, y + 1.5);
         }
     }
     ctx.restore();
-
-    // ── LAYER 2: Horizontal grid offset (additional coverage ~20%) ──
-    const fontSize2 = Math.max(w / 30, 9);
     ctx.save();
-    ctx.rotate(-15 * Math.PI / 180);
-    ctx.font = `${fontSize2}px Arial, sans-serif`;
-    ctx.textAlign = 'center';
+
+    // ── LAYER 2: Second pass — staggered offset, different angle ──
+    const fs2   = Math.max(Math.min(w / 28, 13), 7);
+    const font2 = `${fs2}px Arial, sans-serif`;
+    const tw2   = measure(font2, shortText);
+    const stepX2 = (tw2 + tw2 * 2.0);  // 2× gap
+    const stepY2 = fs2 * 5;
+
+    ctx.font         = font2;
+    ctx.textAlign    = 'left';
     ctx.textBaseline = 'middle';
-    const stepX2 = w / 3.5;
-    const stepY2 = h / 7;
-    for (let x = -w; x < w * 2; x += stepX2) {
-        for (let y = -h * 0.5; y < h * 2; y += stepY2) {
-            ctx.globalAlpha = 0.15;
-            ctx.fillStyle = 'rgba(255,255,255,1)';
-            ctx.fillText('ainime.id', x + stepX2 * 0.5, y + stepY2 * 0.5);
+    ctx.rotate(-15 * Math.PI / 180);
+
+    for (let row = 0; row * stepY2 - h < h * 2.5; row++) {
+        // Stagger even/odd rows by half stepX so pattern doesn't line up
+        const offsetX = (row % 2 === 0) ? 0 : stepX2 * 0.5;
+        const y = row * stepY2 - h * 0.5;
+        for (let x = -w * 1.2 + offsetX; x < w * 2.2; x += stepX2) {
+            ctx.globalAlpha = 0.12;
+            ctx.fillStyle   = '#ffffff';
+            ctx.fillText(shortText, x, y);
         }
     }
     ctx.restore();
+    ctx.save();
 
-    // ── LAYER 3: Per-character randomized text (disrupts AI segmentation) ──
-    const chars = watermarkText.split('');
-    const fontSize3 = Math.max(w / 28, 10);
-    const cols = Math.ceil(w / (fontSize3 * 2.5));
-    const rows = Math.ceil(h / (fontSize3 * 3.5));
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-            const charIndex = (row * cols + col) % chars.length;
-            const cx = (col + 0.5) * (w / cols) + (Math.random() - 0.5) * (fontSize3 * 0.8);
-            const cy = (row + 0.5) * (h / rows) + (Math.random() - 0.5) * (fontSize3 * 0.8);
-            const charRot = (Math.random() - 0.5) * 0.6;
-            ctx.save();
-            ctx.translate(cx, cy);
-            ctx.rotate(charRot);
-            ctx.font = `bold ${fontSize3 + Math.random() * 4}px Orbitron, Arial`;
-            ctx.globalAlpha = 0.12 + Math.random() * 0.10;
-            ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255,255,255,1)' : 'rgba(200,200,200,1)';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(chars[charIndex], 0, 0);
-            ctx.restore();
-        }
+    // ── LAYER 3: Top & bottom strip (single line each) ──
+    const fs3   = Math.max(Math.min(w / 32, 11), 6);
+    const font3 = `${fs3}px Orbitron, Arial`;
+    const tw3   = measure(font3, mainText);
+    // Spacing: text width + 60% gap
+    const stepX3 = tw3 + tw3 * 0.6;
+
+    ctx.font         = font3;
+    ctx.textAlign    = 'left';
+    ctx.textBaseline = 'middle';
+
+    for (let x = 4; x < w; x += stepX3) {
+        ctx.globalAlpha = 0.16;
+        ctx.fillStyle   = '#ffffff';
+        ctx.fillText(mainText, x, fs3 + 4);
+        ctx.fillText(mainText, x, h - fs3 - 4);
     }
+    ctx.restore();
 
-    // ── LAYER 4: Random noise dots (disrupts AI inpainting) ──
-    const noiseDensity = Math.floor(w * h * 0.015); // ~1.5% pixel noise
-    for (let i = 0; i < noiseDensity; i++) {
-        const nx = Math.random() * w;
-        const ny = Math.random() * h;
-        const nr = Math.random() * 1.5 + 0.3;
-        ctx.globalAlpha = 0.08 + Math.random() * 0.12;
-        ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255,255,255,1)' : 'rgba(180,180,255,1)';
+    // ── LAYER 4: Subtle noise dots ──
+    const dots = Math.floor(w * h * 0.006);
+    for (let i = 0; i < dots; i++) {
+        ctx.globalAlpha = 0.05 + Math.random() * 0.07;
+        ctx.fillStyle   = Math.random() > 0.5 ? '#ffffff' : '#b0b0ff';
         ctx.beginPath();
-        ctx.arc(nx, ny, nr, 0, Math.PI * 2);
+        ctx.arc(Math.random() * w, Math.random() * h, Math.random() * 1.2 + 0.3, 0, Math.PI * 2);
         ctx.fill();
     }
 
-    // ── LAYER 5: Semi-transparent overlay strip watermarks (border areas) ──
-    const fontSize5 = Math.max(w / 35, 8);
-    ctx.save();
-    ctx.font = `${fontSize5}px Orbitron, Arial`;
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'middle';
-    // Top strip
-    for (let x = 0; x < w; x += w / 4) {
-        ctx.globalAlpha = 0.20;
-        ctx.fillStyle = 'rgba(255,255,255,1)';
-        ctx.fillText(watermarkText, x + 5, fontSize5 + 3);
-        // Bottom strip
-        ctx.fillText(watermarkText, x + 5, h - fontSize5 - 3);
-    }
-    ctx.restore();
-
-    // Reset
     ctx.globalAlpha = 1.0;
 }
 

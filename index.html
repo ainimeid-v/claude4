@@ -23,16 +23,6 @@
 
     <!-- PAGE 1: WORLD MAP (OPENING) -->
     <section id="page-1" class="page active no-scroll">
-        <!-- SHOOTING STARS -->
-        <div class="shooting-stars" aria-hidden="true">
-            <div class="star star-1"></div>
-            <div class="star star-2"></div>
-            <div class="star star-3"></div>
-            <div class="star star-4"></div>
-            <div class="star star-5"></div>
-            <div class="star star-6"></div>
-            <div class="star star-7"></div>
-        </div>
         <div class="hero-section">
             <div class="floating-decorations">
                 <div class="circle-1"></div>
@@ -87,23 +77,28 @@
     <!-- PAGE 2: ARCHIVE (LIST) -->
     <section id="page-2" class="page">
         <div class="page-container">
+
+            <!-- STICKY HEADER -->
             <header class="rpg-header">
-                <div class="header-nav">
-                    <button class="nav-btn back-to-1" title="Back to World Map">
+                <div class="p2-topbar">
+                    <button class="p2-back-btn back-to-1" title="Back">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <h2 id="category-title">ARCHIVE</h2>
-                    <button id="quick-change-btn" class="nav-btn-highlight" title="Change Category">
-                        <i class="fas fa-th-large"></i> <span>REALM</span>
+                    <div class="p2-title-wrap">
+                        <span class="p2-realm-label">REALM</span>
+                        <h2 id="category-title">ARCHIVE</h2>
+                    </div>
+                    <button id="quick-change-btn" class="p2-realm-btn" title="Change Category">
+                        <i class="fas fa-th-large"></i>
                     </button>
                 </div>
-                
-                <div class="search-filter-container">
-                    <div class="rpg-search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="unit-search" placeholder="Search legend...">
+
+                <div class="p2-search-row">
+                    <div class="p2-search-box">
+                        <i class="fas fa-magnifying-glass"></i>
+                        <input type="text" id="unit-search" placeholder="Cari legend...">
                     </div>
-                    <button id="filter-btn" class="rpg-filter-btn">
+                    <button id="filter-btn" class="p2-filter-btn">
                         <i class="fas fa-sliders"></i>
                     </button>
                 </div>
@@ -121,16 +116,20 @@
                     </div>
                     <div class="filter-section">
                         <label>TAGS</label>
-                        <div id="dynamic-tags" class="tag-selector">
-                            <!-- Populated by JS -->
-                        </div>
+                        <div id="dynamic-tags" class="tag-selector"></div>
                     </div>
                     <button id="reset-filters" class="rpg-btn-small"><i class="fas fa-trash-can"></i></button>
+                </div>
+
+                <!-- Count bar -->
+                <div class="p2-count-bar">
+                    <span class="p2-count-dot"></span>
+                    <span id="p2-count-text">— legends</span>
                 </div>
             </header>
 
             <div id="unit-grid" class="unit-grid">
-                <!-- Units Populated by JS -->
+                <!-- Populated by JS -->
             </div>
         </div>
     </section>
@@ -328,95 +327,12 @@
         </div>
     </div>
 
-    <!-- RECEPTIONIST CHARACTER — INTERACTIVE, ALL PAGES -->
-    <div id="receptionist" class="recep-wrap">
-        <div class="recep-bubble hidden" id="recep-bubble">
-            <span id="recep-bubble-text">Welcome!</span>
-        </div>
-        <div class="recep-img-wrap">
-            <video
-                id="recep-vid"
-                class="recep-img"
-                src="receptionist.mp4"
-                autoplay
-                loop
-                muted
-                playsinline
-                disablepictureinpicture
-                draggable="false"
-            ></video>
-        </div>
-    </div>
-
     <!-- SCRIPT FILE -->
     <script src="script.js"></script>
     <script>
     // ── FORCE DARK MODE ALWAYS ──
     document.documentElement.setAttribute('data-theme', 'dark');
     localStorage.setItem('theme', 'dark');
-
-    // ── RECEPTIONIST LOGIC ──
-    (function(){
-        const el     = document.getElementById('receptionist');
-        const bubble = document.getElementById('recep-bubble');
-        const bubTxt = document.getElementById('recep-bubble-text');
-        const vid    = document.getElementById('recep-vid');
-        if (!el || !bubble) return;
-
-        const dialogues = [
-            "Selamat datang di Ainime Gallery! ✨",
-            "Ada yang bisa aku bantu? 📖",
-            "Coba explore semua kategori ya~ 🗺️",
-            "Klik kartu untuk lihat detail legendnya! ⚔️",
-            "Jangan lupa cek PATCH NOTES terbaru! 📋",
-            "Wah, ada pengunjung setia! 💛",
-            "Sudah coba kategori Magic belum? 🔮",
-            "Gunakan filter untuk cari legend favoritmu~",
-            "Tekan tanggal di kanan atas buat lihat kalender! 📅",
-            "Aku selalu di sini untukmu~ ✦"
-        ];
-        let bubTimer = null;
-        let lastDlg  = -1;
-
-        function showBubble(txt) {
-            clearTimeout(bubTimer);
-            bubTxt.textContent = txt;
-            bubble.classList.remove('hidden');
-            bubble.classList.add('bubble-pop');
-            bubTimer = setTimeout(() => {
-                bubble.classList.add('hidden');
-                bubble.classList.remove('bubble-pop');
-            }, 3500);
-        }
-
-        function getRandDialogue() {
-            let i;
-            do { i = Math.floor(Math.random() * dialogues.length); } while (i === lastDlg);
-            lastDlg = i;
-            return dialogues[i];
-        }
-
-        // Tap / click
-        el.addEventListener('click', (e) => {
-            e.stopPropagation();
-            el.classList.add('recep-tap');
-            setTimeout(() => el.classList.remove('recep-tap'), 400);
-            showBubble(getRandDialogue());
-        });
-
-        // Auto greet on page-1 becoming active
-        const p1 = document.getElementById('page-1');
-        if (p1) {
-            const obs = new MutationObserver(() => {
-                if (p1.classList.contains('active')) {
-                    setTimeout(() => showBubble(dialogues[0]), 1200);
-                }
-            });
-            obs.observe(p1, { attributes: true, attributeFilter: ['class'] });
-        }
-
-        // Initial greeting
-        setTimeout(() => showBubble(dialogues[0]), 3000);
-    })();
     </script>
+</body>
 </html>
