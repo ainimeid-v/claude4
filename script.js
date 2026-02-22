@@ -37,12 +37,16 @@ const UI = {
         target.classList.add('active');
         if (save) localStorage.setItem('lastPage', pageId);
 
-        // Update visibility for clock/date and tiktok text
+        // Update visibility: jam/tanggal & tiktok & request button hanya di page-1
         const hud = document.getElementById('top-hud');
         const tiktok = document.getElementById('tiktok-text');
         const reqBtn = document.getElementById('request-btn');
+        
         if (pageId === 'page-1') {
-            if (hud) hud.style.display = 'flex';
+            // Hanya tampilkan HUD jika loading sudah benar-benar selesai (classList.contains('hidden'))
+            const loadingEl = document.getElementById('loading-screen');
+            const loadingDone = loadingEl && loadingEl.classList.contains('hidden');
+            if (hud) hud.style.display = loadingDone ? 'flex' : 'none';
             if (tiktok) tiktok.style.display = 'block';
             if (reqBtn) reqBtn.style.display = 'flex';
         } else {
@@ -224,6 +228,9 @@ async function init() {
     // Force dark mode only
     document.documentElement.setAttribute("data-theme", "dark"); localStorage.setItem("theme","dark");
 
+    // ── SEMBUNYIKAN HUD (jam & tanggal) selama loading screen ──
+    const hud = document.getElementById('top-hud');
+    if (hud) hud.style.display = 'none';
     
     const dataPromise = loadRealmData();
     await startLoadingAnimation();
@@ -231,7 +238,15 @@ async function init() {
     
     if (UI.loading) {
         UI.loading.style.opacity = '0';
-        setTimeout(() => UI.loading.classList.add('hidden'), 500);
+        setTimeout(() => {
+            UI.loading.classList.add('hidden');
+            // Tampilkan HUD setelah loading selesai (hanya jika di page-1)
+            const activePage = document.querySelector('.page.active');
+            if (activePage && activePage.id === 'page-1') {
+                const hudEl = document.getElementById('top-hud');
+                if (hudEl) hudEl.style.display = 'flex';
+            }
+        }, 500);
     }
 
     const lastPage = localStorage.getItem('lastPage') || 'page-1';
@@ -377,11 +392,10 @@ async function init() {
     setInterval(() => UI.updateClock(), 1000);
     UI.updateClock();
 
-    // ── REQUEST BUTTON — only visible on page-1 initially ──
-    const reqBtn = document.getElementById('request-btn');
-    if (reqBtn) reqBtn.style.display = 'flex'; // starts on page-1
+    // ── BUTTON REQUEST hanya muncul di page-1 — dikelola oleh showPage() ──
+    // JANGAN set display di sini agar tidak override logic showPage()
 
-    // REVISI 3: SCROLL HANDLER FOR PAGE 3 - AUTO HIDE/SHOW NAV
+    // SCROLL HANDLER FOR PAGE 3 - AUTO HIDE/SHOW NAV
     const page3 = document.getElementById('page-3');
     if (page3) {
         page3.addEventListener('scroll', () => {
@@ -389,51 +403,92 @@ async function init() {
             const nav = document.querySelector('.detail-nav-static');
             if (!nav) return;
 
-            // Threshold to prevent flickering
             if (Math.abs(currentScrollY - lastScrollY) < 5) return;
 
             if (currentScrollY > lastScrollY && currentScrollY > 50) {
-                nav.classList.add('nav-hidden'); // Scroll Down - Hide
+                nav.classList.add('nav-hidden');
             } else {
-                nav.classList.remove('nav-hidden'); // Scroll Up or at top - Show
+                nav.classList.remove('nav-hidden');
             }
             lastScrollY = currentScrollY;
         }, { passive: true });
     }
 
-    // ── ANTI SCREENSHOT / SCREEN RECORD ──
-    // 1. Block PrintScreen key — immediately clear clipboard
+    // ── ANTI SCREENSHOT / SCREEN RECORD — DESKTOP + MOBILE ──
+    const getBlocker = () => document.getElementById('ss-blocker');
+
+    // 1. Desktop: Block PrintScreen key
     document.addEventListener('keyup', (e) => {
         if (e.key === 'PrintScreen' || e.keyCode === 44) {
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText('').catch(() => {});
             }
-            // Briefly show blocking overlay
-            const blocker = document.getElementById('ss-blocker');
+            const blocker = getBlocker();
             if (blocker) {
                 blocker.style.display = 'block';
-                setTimeout(() => { blocker.style.display = 'none'; }, 600);
+                setTimeout(() => { blocker.style.display = 'none'; }, 700);
             }
         }
     });
-    // 2. Block common screenshot combos (Ctrl+Shift+S, etc.)
+
+    // 2. Desktop: Block screenshot keyboard combos
     document.addEventListener('keydown', (e) => {
         if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'S' || e.key === 's')) {
             e.preventDefault(); e.stopPropagation();
         }
-        // Windows Snipping Tool shortcut
-        if (e.key === 'PrintScreen') {
-            e.preventDefault();
+        if (e.key === 'PrintScreen') e.preventDefault();
+    });
+
+    // 3. MOBILE + DESKTOP: Intercept window blur (home button, screenshot gesture, app switch)
+    window.addEventListener('blur', () => {
+        const blocker = getBlocker();
+        if (blocker) {
+            blocker.style.display = 'block';
+            blocker.style.opacity = '1';
         }
     });
-    // 3. On visibility hidden (tab switch during screen record) — show blocker
+    window.addEventListener('focus', () => {
+        const blocker = getBlocker();
+        if (blocker) {
+            setTimeout(() => { blocker.style.display = 'none'; }, 500);
+        }
+    });
+
+    // 4. visibilitychange (Android / tab switch / screen record detection)
     document.addEventListener('visibilitychange', () => {
-        const blocker = document.getElementById('ss-blocker');
+        const blocker = getBlocker();
         if (!blocker) return;
         if (document.hidden) {
             blocker.style.display = 'block';
+            blocker.style.opacity = '1';
         } else {
-            setTimeout(() => { blocker.style.display = 'none'; }, 400);
+            setTimeout(() => { blocker.style.display = 'none'; }, 500);
+        }
+    });
+
+    // 5. iOS / Android: pagehide (background mode detection)
+    window.addEventListener('pagehide', () => {
+        const blocker = getBlocker();
+        if (blocker) blocker.style.display = 'block';
+    });
+    window.addEventListener('pageshow', () => {
+        const blocker = getBlocker();
+        if (blocker) setTimeout(() => { blocker.style.display = 'none'; }, 500);
+    });
+
+    // 6. iOS screenshot detection via resize (screenshot often triggers resize on iOS)
+    let _lastW = window.innerWidth, _lastH = window.innerHeight;
+    window.addEventListener('resize', () => {
+        const dw = Math.abs(window.innerWidth - _lastW);
+        const dh = Math.abs(window.innerHeight - _lastH);
+        _lastW = window.innerWidth; _lastH = window.innerHeight;
+        // Small resize (< 50px) while not rotating = possible screenshot UI trigger
+        if (dw < 50 && dh < 50 && dw + dh > 0) {
+            const blocker = getBlocker();
+            if (blocker) {
+                blocker.style.display = 'block';
+                setTimeout(() => { blocker.style.display = 'none'; }, 600);
+            }
         }
     });
 }
