@@ -1075,76 +1075,61 @@ body {
 /* receptionist removed */
 
 /* ================================================
-   PAGE 2 — BRIGHT ANIME FANTASY — VIBRANT REDESAIN
-   Inspirasi: Loading screen yang colorful & terang!
+   PAGE 2 — COLORFUL, TERANG, ZERO GLOW
    ================================================ */
 
-/* Background cerah ala loading screen — nebula colorful */
+/* Background: colorful tapi clean — no glow blur */
 #page-2 {
     background:
-        radial-gradient(ellipse 100% 50% at 50% 0%,   rgba(120, 0, 255, 0.35)  0%, transparent 55%),
-        radial-gradient(ellipse 80%  60% at 100% 30%, rgba(0, 100, 255, 0.25)  0%, transparent 55%),
-        radial-gradient(ellipse 70%  50% at 0%   70%, rgba(255, 0, 150, 0.2)   0%, transparent 55%),
-        radial-gradient(ellipse 60%  40% at 50% 100%, rgba(var(--accent-rgb), 0.2) 0%, transparent 60%),
-        linear-gradient(175deg, #1a005a 0%, #08010a 30%, #020020 60%, #0a0005 100%) !important;
+        radial-gradient(ellipse 110% 55% at 50% 0%,   rgba(100, 20, 220, 0.28) 0%, transparent 60%),
+        radial-gradient(ellipse 70%  50% at 95% 40%,  rgba(20, 80, 230, 0.2)   0%, transparent 60%),
+        radial-gradient(ellipse 65%  45% at 5%  70%,  rgba(200, 0, 120, 0.16)  0%, transparent 60%),
+        linear-gradient(165deg, #130038 0%, #07000f 35%, #010018 65%, #080003 100%) !important;
 }
 
-/* Star field — sama persis kayak loading screen */
+/* Bintang halus — tidak bergerak, tidak mengganggu */
 #page-2::before {
     content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background-image:
-        radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 1px),
-        radial-gradient(circle, rgba(200,180,255,0.65) 1px, transparent 1px),
-        radial-gradient(circle, rgba(180,220,255,0.5)  1px, transparent 1px);
-    background-size: 160px 160px, 90px 90px, 120px 120px;
-    background-position: 20px 30px, 55px 70px, 10px 50px;
+        radial-gradient(circle, rgba(255,255,255,0.75) 1px, transparent 1px),
+        radial-gradient(circle, rgba(200,185,255,0.55) 1px, transparent 1px),
+        radial-gradient(circle, rgba(170,215,255,0.45) 1px, transparent 1px);
+    background-size: 180px 180px, 95px 95px, 130px 130px;
+    background-position: 30px 40px, 60px 75px, 15px 55px;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.5;
-    animation: p2StarDrift 30s linear infinite;
-}
-@keyframes p2StarDrift {
-    0%   { background-position: 20px 30px, 55px 70px, 10px 50px; }
-    100% { background-position: 180px 190px, 145px 160px, 130px 170px; }
+    opacity: 0.45;
 }
 
-/* Nebula blobs — colorful floating */
+/* Warna nebula — subtle, tidak menyilaukan */
 #page-2::after {
     content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background:
-        radial-gradient(ellipse 45% 30% at 15% 20%,  rgba(120,0,255,0.25)  0%, transparent 70%),
-        radial-gradient(ellipse 35% 25% at 88% 15%,  rgba(0,100,255,0.2)   0%, transparent 70%),
-        radial-gradient(ellipse 40% 30% at 10% 75%,  rgba(255,0,150,0.18)  0%, transparent 70%),
-        radial-gradient(ellipse 50% 35% at 85% 80%,  rgba(var(--accent-rgb),0.22) 0%, transparent 70%);
+        radial-gradient(ellipse 40% 28% at 12% 18%, rgba(100,0,220,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 32% 22% at 90% 12%, rgba(0,80,220,0.14)  0%, transparent 70%),
+        radial-gradient(ellipse 38% 28% at 8%  78%, rgba(200,0,130,0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 32% at 88% 82%, rgba(var(--accent-rgb),0.16) 0%, transparent 70%);
     pointer-events: none;
     z-index: 0;
-    animation: p2NebDrift 10s ease-in-out infinite alternate;
-}
-@keyframes p2NebDrift {
-    0%   { opacity: 0.5; transform: scale(1); }
-    100% { opacity: 0.9; transform: scale(1.06); }
 }
 
-/* ── HEADER — glassmorphism terang ── */
+/* ── HEADER ── */
 .rpg-header {
     position: sticky !important;
     top: 0 !important;
     z-index: 50 !important;
-    background: rgba(8, 2, 25, 0.78) !important;
-    backdrop-filter: blur(28px) saturate(2) brightness(1.4) !important;
+    background: rgba(12, 4, 30, 0.82) !important;
+    backdrop-filter: blur(20px) !important;
     border: none !important;
-    border-bottom: 1px solid rgba(var(--accent-rgb), 0.55) !important;
+    border-bottom: 1.5px solid rgba(var(--accent-rgb), 0.4) !important;
     border-radius: 0 !important;
     padding: 14px 16px 0 !important;
     margin-bottom: 0 !important;
-    box-shadow:
-        0 8px 32px rgba(0,0,0,0.5),
-        0 1px 0 rgba(var(--accent-rgb), 0.45),
-        inset 0 1px 0 rgba(255,255,255,0.08) !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
 }
 
 .p2-topbar {
@@ -1155,8 +1140,8 @@ body {
 }
 
 .p2-back-btn {
-    background: rgba(var(--accent-rgb), 0.2) !important;
-    border: 1px solid rgba(var(--accent-rgb), 0.6) !important;
+    background: rgba(var(--accent-rgb), 0.15) !important;
+    border: 1.5px solid rgba(var(--accent-rgb), 0.5) !important;
     color: var(--accent-clr) !important;
     width: 40px; height: 40px;
     border-radius: 12px;
@@ -1165,64 +1150,34 @@ body {
     font-size: 0.9rem;
     flex-shrink: 0;
     transition: 0.2s ease;
-    box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.25);
 }
 .p2-back-btn:hover {
     background: var(--accent-clr) !important;
     color: #fff !important;
-    box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.6) !important;
 }
 
 .p2-title-wrap {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
 }
 
-.p2-realm-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: rgba(var(--accent-rgb), 0.22);
-    border: 1px solid rgba(var(--accent-rgb), 0.55);
-    border-radius: 6px;
-    padding: 3px 9px;
-    width: fit-content;
-    box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.25);
-}
-.p2-realm-badge svg {
-    color: var(--accent-clr);
-    flex-shrink: 0;
-    width: 10px; height: 10px;
-}
-.p2-realm-badge span {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.6rem;
-    font-weight: 800;
-    letter-spacing: 3px;
-    color: var(--accent-clr);
-    text-transform: uppercase;
-}
-
-/* Category title — TERANG dengan glow kuat */
+/* Category title — terang, NO glow */
 .p2-title-wrap h2 {
     font-family: 'Cinzel', serif !important;
     font-size: 1.55rem !important;
     font-weight: 700 !important;
-    color: #fff !important;
+    color: #ffffff !important;
     letter-spacing: 1.5px !important;
     line-height: 1 !important;
     margin: 0 !important;
-    text-shadow:
-        0 0 20px rgba(var(--accent-rgb), 1),
-        0 0 40px rgba(var(--accent-rgb), 0.5),
-        0 2px 8px rgba(0,0,0,0.8) !important;
+    text-shadow: none !important;
 }
 
 .p2-realm-btn {
-    background: rgba(var(--accent-rgb), 0.2) !important;
-    border: 1px solid rgba(var(--accent-rgb), 0.6) !important;
+    background: rgba(var(--accent-rgb), 0.15) !important;
+    border: 1.5px solid rgba(var(--accent-rgb), 0.5) !important;
     color: var(--accent-clr) !important;
     width: 40px; height: 40px;
     border-radius: 12px;
@@ -1230,14 +1185,13 @@ body {
     cursor: pointer;
     flex-shrink: 0;
     transition: 0.2s ease;
-    box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.25);
 }
 .p2-realm-btn:hover {
-    background: rgba(var(--accent-rgb), 0.4) !important;
+    background: rgba(var(--accent-rgb), 0.3) !important;
     border-color: var(--accent-clr) !important;
-    box-shadow: 0 0 22px rgba(var(--accent-rgb), 0.5) !important;
 }
 
+/* Search */
 .p2-search-row {
     display: flex;
     gap: 10px;
@@ -1248,23 +1202,22 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(var(--accent-rgb), 0.45);
+    background: rgba(255,255,255,0.09);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.35);
     border-radius: 14px;
     padding: 0 16px;
     height: 44px;
-    transition: 0.25s ease;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    transition: 0.2s ease;
 }
 .p2-search-box:focus-within {
     border-color: var(--accent-clr);
-    background: rgba(var(--accent-rgb), 0.15);
-    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+    background: rgba(var(--accent-rgb), 0.12);
 }
 .p2-search-box i {
-    color: rgba(var(--accent-rgb), 0.9);
+    color: var(--accent-clr);
     font-size: 0.85rem;
     flex-shrink: 0;
+    opacity: 0.8;
 }
 .p2-search-box input {
     background: transparent;
@@ -1275,34 +1228,32 @@ body {
     width: 100%;
     font-family: 'Exo 2', sans-serif;
 }
-.p2-search-box input::placeholder { color: rgba(255,255,255,0.4); }
+.p2-search-box input::placeholder { color: rgba(255,255,255,0.38); }
 
 .p2-filter-btn {
     width: 44px; height: 44px;
     border-radius: 14px;
-    background: rgba(var(--accent-rgb), 0.2);
-    border: 1px solid rgba(var(--accent-rgb), 0.55);
+    background: rgba(var(--accent-rgb), 0.15);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.5);
     color: var(--accent-clr);
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
     font-size: 0.95rem;
     flex-shrink: 0;
     transition: 0.2s ease;
-    box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.2);
 }
 .p2-filter-btn:hover {
     background: var(--accent-clr);
-    border-color: var(--accent-clr);
     color: #fff;
-    box-shadow: 0 0 24px rgba(var(--accent-rgb), 0.6);
 }
 
+/* Count bar */
 .p2-count-bar {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 8px 2px;
-    border-top: 1px solid rgba(var(--accent-rgb), 0.3);
+    border-top: 1px solid rgba(var(--accent-rgb), 0.25);
 }
 .p2-count-dot {
     width: 5px; height: 5px;
@@ -1310,17 +1261,16 @@ body {
     background: var(--accent-clr);
     flex-shrink: 0;
     animation: pulseDot 2s ease-in-out infinite;
-    box-shadow: 0 0 10px var(--accent-clr), 0 0 20px rgba(var(--accent-rgb), 0.6);
 }
 @keyframes pulseDot {
     0%,100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.5); }
+    50% { opacity: 0.35; transform: scale(0.5); }
 }
 #p2-count-text {
     font-family: 'Exo 2', sans-serif;
     font-size: 0.72rem;
     font-weight: 700;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.6);
     letter-spacing: 0.5px;
 }
 
@@ -1334,63 +1284,49 @@ body {
     z-index: 1;
 }
 
-/* ── UNIT CARD — VIBRANT & TERANG ── */
+/* ── UNIT CARD — clean, colorful, NO glow ── */
 .unit-card {
     position: relative !important;
-    background: linear-gradient(160deg,
-        rgba(35, 8, 70, 0.88) 0%,
-        rgba(18, 3, 45, 0.92) 50%,
-        rgba(28, 5, 55, 0.88) 100%
+    background: linear-gradient(155deg,
+        rgba(40, 10, 80, 0.9) 0%,
+        rgba(20, 5, 50, 0.95) 100%
     ) !important;
-    border: 1px solid rgba(var(--accent-rgb), 0.5) !important;
+    border: 1.5px solid rgba(var(--accent-rgb), 0.45) !important;
     border-radius: 18px !important;
     overflow: hidden !important;
     cursor: pointer !important;
     transition:
-        transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275),
-        box-shadow 0.35s ease,
-        border-color 0.3s ease !important;
-    box-shadow:
-        0 6px 20px rgba(0,0,0,0.5),
-        0 0 18px rgba(var(--accent-rgb), 0.12),
-        inset 0 1px 0 rgba(255,255,255,0.08) !important;
-    backdrop-filter: blur(4px) !important;
+        transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275),
+        border-color 0.25s ease !important;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.5) !important;
 }
 
-/* Shimmer line — bright & vibrant */
+/* Shimmer line atas — satu-satunya efek "sparkle" */
 .unit-card::before {
     content: '' !important;
     position: absolute !important;
     top: 0 !important; left: 0 !important; right: 0 !important;
     height: 2px !important;
-    width: 100% !important;
     background: linear-gradient(90deg,
         transparent 0%,
-        rgba(var(--accent-rgb), 1) 30%,
-        rgba(255,255,255,1) 50%,
-        rgba(var(--accent-rgb), 1) 70%,
+        var(--accent-clr) 35%,
+        #ffffff 50%,
+        var(--accent-clr) 65%,
         transparent 100%
     ) !important;
     z-index: 6 !important;
-    animation: shimmerLine 2.5s ease-in-out infinite !important;
-    background-size: 200% 100% !important;
-}
-@keyframes shimmerLine {
-    0%   { background-position: -100% 0; opacity: 0.6; }
-    50%  { background-position:  200% 0; opacity: 1;   }
-    100% { background-position: -100% 0; opacity: 0.6; }
+    opacity: 0.85 !important;
 }
 
-/* Bottom gradient — dikurangi biar foto keliatan */
+/* Bottom fade — natural, tidak lebay */
 .unit-card::after {
     content: '' !important;
     position: absolute !important;
     bottom: 0 !important; left: 0 !important; right: 0 !important;
-    height: 42% !important;
+    height: 40% !important;
     background: linear-gradient(to top,
-        rgba(12,2,30,0.97) 0%,
-        rgba(12,2,30,0.65) 40%,
-        rgba(12,2,30,0.15) 70%,
+        rgba(15, 3, 38, 0.96) 0%,
+        rgba(15, 3, 38, 0.55) 45%,
         transparent 100%
     ) !important;
     z-index: 2 !important;
@@ -1398,13 +1334,9 @@ body {
 }
 
 .unit-card:hover {
-    transform: translateY(-7px) scale(1.03) !important;
-    border-color: rgba(var(--accent-rgb), 1) !important;
-    box-shadow:
-        0 20px 45px rgba(0,0,0,0.55),
-        0 0 35px rgba(var(--accent-rgb), 0.4),
-        0 0 70px rgba(var(--accent-rgb), 0.15),
-        inset 0 1px 0 rgba(255,255,255,0.12) !important;
+    transform: translateY(-6px) scale(1.025) !important;
+    border-color: var(--accent-clr) !important;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.55) !important;
 }
 
 .unit-card img {
@@ -1415,9 +1347,9 @@ body {
     display: block !important;
     z-index: 1 !important;
     position: relative !important;
-    transition: transform 0.4s ease !important;
+    transition: transform 0.35s ease !important;
 }
-.unit-card:hover img { transform: scale(1.05) !important; }
+.unit-card:hover img { transform: scale(1.04) !important; }
 
 .unit-info {
     position: absolute !important;
@@ -1427,7 +1359,7 @@ body {
     background: transparent !important;
 }
 
-/* Nama — white + glow terang */
+/* Nama — putih bersih, NO glow */
 .unit-info .name {
     font-family: 'Exo 2', sans-serif !important;
     font-size: 0.85rem !important;
@@ -1439,14 +1371,11 @@ body {
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    text-shadow:
-        0 0 18px rgba(var(--accent-rgb), 0.9),
-        0 0 35px rgba(var(--accent-rgb), 0.45),
-        0 1px 6px rgba(0,0,0,0.95) !important;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.9) !important;
     display: block !important;
 }
 
-/* Rarity badge — hexagon dengan glow kuat */
+/* Rarity badge — hexagon, solid, NO glow */
 .unit-rarity {
     position: absolute !important;
     top: 10px !important;
@@ -1464,25 +1393,21 @@ body {
     font-size: 0.6rem !important;
     font-weight: 900 !important;
     font-family: 'Orbitron', sans-serif !important;
-    letter-spacing: 0 !important;
     z-index: 7 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     text-shadow: none !important;
-    box-shadow:
-        0 0 15px rgba(var(--accent-rgb), 1),
-        0 0 30px rgba(var(--accent-rgb), 0.6) !important;
+    box-shadow: none !important;
 }
 
 /* Filter panel */
 .filter-panel {
-    background: rgba(8, 2, 22, 0.88);
+    background: rgba(10, 3, 28, 0.9);
     margin-top: 10px; padding: 14px;
     border-radius: 12px;
-    border: 1px solid rgba(var(--accent-rgb), 0.4);
-    backdrop-filter: blur(20px);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+    border: 1px solid rgba(var(--accent-rgb), 0.3);
+    backdrop-filter: blur(16px);
 }
 
 .filter-section { margin-bottom: 14px; }
@@ -1492,33 +1417,32 @@ body {
     color: var(--accent-clr);
     letter-spacing: 2px;
     font-family: 'Orbitron', sans-serif;
-    text-shadow: 0 0 12px rgba(var(--accent-rgb), 0.7);
+    text-shadow: none;
 }
 
 .rarity-selector, .tag-selector { display: flex; flex-wrap: wrap; gap: 7px; }
 .r-chip, .t-chip {
     padding: 5px 12px;
-    background: rgba(255,255,255,0.09);
+    background: rgba(255,255,255,0.08);
     border-radius: 8px;
     font-weight: 700; font-size: 0.68rem;
     cursor: pointer;
-    border: 1px solid rgba(var(--accent-rgb), 0.4);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.35);
     white-space: nowrap;
     transition: 0.2s ease;
-    color: rgba(255,255,255,0.85);
+    color: rgba(255,255,255,0.82);
     font-family: 'Orbitron', sans-serif;
 }
 .r-chip:hover, .t-chip:hover {
     border-color: var(--accent-clr);
-    background: rgba(var(--accent-rgb), 0.22);
+    background: rgba(var(--accent-rgb), 0.2);
     color: #fff;
-    box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4);
 }
 .r-chip.active, .t-chip.active {
     background: var(--accent-clr);
     color: white;
     border-color: var(--accent-clr);
-    box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.7);
+    box-shadow: none;
 }
 
 /* ── PAGE 3 RARITY BADGE — hexagon, top right ── */
