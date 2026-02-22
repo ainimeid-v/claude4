@@ -472,103 +472,259 @@ body {
 
 .unit-rarity { /* overridden below in page-2 redesign */ }
 
-/* PAGE 3: DETAIL - REVISI 3: AUTO HIDE/SHOW NAV */
+/* ════════════════════════════════════════════════════
+   PAGE 3 — CELESTIAL PROFILE — REDESAIN TOTAL
+   ════════════════════════════════════════════════════ */
+
+/* Floating nav — pill style, terang */
 .detail-nav-static {
-    display: flex; justify-content: space-between;
-    width: 100%; margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     position: fixed;
-    top: 20px;
-    left: 0;
-    right: 0;
+    top: 16px;
+    left: 0; right: 0;
     z-index: 100;
-    padding: 0 10px;
-    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.6s ease;
+    padding: 0 16px;
     pointer-events: none;
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.5s ease;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
 }
-
 .detail-nav-static > * { pointer-events: auto; }
-
-.detail-nav-static.nav-hidden { 
-    transform: translateY(-120px); 
-    opacity: 0;
-}
+.detail-nav-static.nav-hidden { transform: translateY(-90px); opacity: 0; }
 
 .nav-btn-circle {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: var(--secondary-bg);
-    border: 2px solid var(--accent-clr);
-    color: var(--accent-clr); display: flex; align-items: center; justify-content: center;
-    cursor: pointer; font-size: 0.9rem;
-    transition: var(--transition);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(12, 4, 30, 0.85);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.6);
+    color: var(--accent-clr);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: 0.2s ease;
+    backdrop-filter: blur(12px);
+}
+.nav-btn-circle:hover { background: var(--accent-clr); color: #fff; border-color: var(--accent-clr); }
+.back-to-2 { margin-left: 0; }
+.back-to-1 { margin-right: 0; }
+
+/* Page 3 scrollable container */
+.detail-view {
+    padding: 0 !important;
+    max-width: 100% !important;
 }
 
-.nav-btn-circle:hover { background: var(--accent-clr); color: white; transform: scale(1.1); }
-.back-to-2 { margin-left: 2px; }
-.back-to-1 { margin-right: 2px; }
+/* Hero image — full bleed, dramatic */
+.detail-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 0;
+}
 
-.detail-layout { display: flex; flex-direction: column; gap: 20px; padding-top: 10px; } /* Dinaikkan lebih banyak dari 40px ke 10px */
-.unit-visual { width: 100%; max-width: 260px; margin: -40px auto 0; } /* Image dinaikkan lebih tinggi */
+.unit-visual {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    position: relative;
+    height: 55vh;
+    min-height: 300px;
+    overflow: hidden;
+}
+
 .image-frame {
-    position: relative; border: 3px solid var(--accent-clr);
-    border-radius: 15px; overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
 }
 
-.image-frame img { width: 100%; display: block; }
-/* detail-rarity-badge overridden in page-2 redesign section below */
-
-.unit-bio { text-align: center; margin-top: 20px; }
-/* unit-bio h1 overridden in page-2 redesign section */
-.unit-bio h3 { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; font-style: italic; margin-top: -10px; }
-.detail-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; margin-top: -10px; justify-content: center; }
-.tag { background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 12px; font-size: 0.65rem; border: 1px solid var(--accent-clr); color: var(--accent-clr); font-weight: 700; }
-
-[data-theme="light"] .tag {
-    background: rgba(0,0,0,0.05);
+.image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
 }
 
-.rpg-box {
-    background: var(--card-bg); border: 1px solid var(--border-clr);
-    border-radius: 12px; padding: 20px 15px 15px; text-align: left; position: relative;
-    height: auto; min-height: 80px;
-    color: var(--text-main);
+/* Gradient overlay dari bawah image — seamless transition ke konten */
+.image-frame::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60%;
+    background: linear-gradient(to top,
+        var(--primary-bg) 0%,
+        rgba(13, 3, 28, 0.8) 40%,
+        transparent 100%
+    );
+    pointer-events: none;
 }
 
-/* REVISI 4: LORE / STORY CONTRAST FIX */
-.box-header {
-    position: absolute; top: -8px; left: 15px;
-    background: var(--accent-clr); 
-    color: #ffffff !important; /* Force white text for contrast */
-    padding: 2px 12px; font-size: 0.65rem; border-radius: 4px;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+/* Rarity badge — top right of image, bold */
+#detail-rarity-badge {
+    position: absolute !important;
+    top: 70px !important;
+    right: 16px !important;
+    bottom: auto !important;
+    width: 40px !important;
+    height: 40px !important;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%) !important;
+    background: var(--accent-clr) !important;
+    color: #fff !important;
+    border-radius: 0 !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 900 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    z-index: 10 !important;
+}
+
+/* Info panel — slides right under image */
+.unit-bio {
+    text-align: left;
+    margin-top: -30px;
+    padding: 0 20px 20px;
+    position: relative;
     z-index: 5;
 }
 
-/* GALLERY CAROUSEL */
-.unit-gallery { margin-top: 10px; padding-bottom: 20px; }
-.gallery-title { font-family: 'Orbitron', sans-serif; font-size: 0.7rem; color: var(--accent-clr); text-align: center; margin-bottom: 15px; letter-spacing: 2px; }
-.carousel { width: 100%; overflow: hidden; padding: 10px 0; }
-.carousel-track { display: flex; align-items: center; justify-content: center; gap: 15px; min-height: 110px; }
-.extra-img {
-    width: 70px; height: 70px; object-fit: cover;
-    border-radius: 8px; opacity: 0.5; cursor: pointer; 
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, border 0.4s ease;
-    border: 1px solid transparent;
+.unit-bio h1 {
+    font-family: 'Cinzel', serif !important;
+    font-size: 1.9rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin-bottom: 4px !important;
+    margin-top: 0 !important;
+    text-shadow: none !important;
+    text-transform: none !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0.5px !important;
 }
 
-.extra-img.active {
-    width: 90px; height: 90px; opacity: 1;
-    border: 2px solid var(--accent-clr);
-    transform: scale(1.1);
+.unit-bio h3 {
+    font-size: 0.85rem;
+    color: var(--accent-clr);
+    margin-bottom: 16px;
+    font-style: italic;
+    margin-top: 2px;
+    opacity: 0.85;
+    font-family: 'Exo 2', sans-serif;
 }
+
+/* Tags — colorful pills */
+.detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 20px;
+    margin-top: 0;
+    justify-content: flex-start;
+}
+
+.tag {
+    background: rgba(var(--accent-rgb), 0.15);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    border: 1.5px solid rgba(var(--accent-rgb), 0.5);
+    color: var(--accent-clr);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-family: 'Orbitron', sans-serif;
+}
+.tag:hover { background: var(--accent-clr); color: #fff; }
+
+/* Lore box — elegant, left-bordered */
+.rpg-box {
+    background: rgba(20, 6, 45, 0.8);
+    border: none;
+    border-left: 3px solid var(--accent-clr);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 18px 18px;
+    text-align: left;
+    position: relative;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.7;
+    font-size: 0.88rem;
+    backdrop-filter: blur(8px);
+}
+
+.box-header {
+    position: absolute;
+    top: -10px; left: -3px;
+    background: var(--accent-clr);
+    color: #ffffff !important;
+    padding: 2px 14px;
+    font-size: 0.6rem;
+    border-radius: 0 4px 4px 0;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    letter-spacing: 2px;
+    z-index: 5;
+}
+
+/* Gallery section */
+.unit-gallery {
+    margin: 20px 20px 0;
+    padding-bottom: 30px;
+}
+
+.gallery-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    color: rgba(var(--accent-rgb), 0.7);
+    text-align: left;
+    margin-bottom: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.carousel { width: 100%; overflow: hidden; padding: 6px 0; }
+
+.carousel-track {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    min-height: 100px;
+}
+
+.extra-img {
+    width: 72px; height: 96px;
+    object-fit: cover;
+    border-radius: 10px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+    border: 1.5px solid transparent;
+    flex-shrink: 0;
+}
+.extra-img.active {
+    width: 88px; height: 118px;
+    opacity: 1;
+    border-color: var(--accent-clr);
+    transform: scale(1);
+}
+.extra-img:not(.active):hover {
+    opacity: 0.75;
+    transform: translateY(-3px);
+}
+
 
 /* MODALS */
 .rpg-modal {
@@ -1074,74 +1230,81 @@ body {
 
 /* receptionist removed */
 
-/* ================================================
-   PAGE 2 — COLORFUL, TERANG, ZERO GLOW
-   ================================================ */
+/* ════════════════════════════════════════════════════
+   PAGE 2 — CELESTIAL GRIMOIRE — COLORFUL FANTASY
+   ════════════════════════════════════════════════════ */
 
-/* Background: colorful tapi clean — no glow blur */
+/* ── BACKGROUND: Aurora Kosmik ── */
 #page-2 {
     background:
-        radial-gradient(ellipse 110% 55% at 50% 0%,   rgba(100, 20, 220, 0.28) 0%, transparent 60%),
-        radial-gradient(ellipse 70%  50% at 95% 40%,  rgba(20, 80, 230, 0.2)   0%, transparent 60%),
-        radial-gradient(ellipse 65%  45% at 5%  70%,  rgba(200, 0, 120, 0.16)  0%, transparent 60%),
-        linear-gradient(165deg, #130038 0%, #07000f 35%, #010018 65%, #080003 100%) !important;
+        radial-gradient(ellipse 120% 60% at 50% -10%, rgba(90, 10, 200, 0.45) 0%, transparent 60%),
+        radial-gradient(ellipse 70%  55% at -10% 50%, rgba(180, 0, 100, 0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 65%  50% at 110% 60%, rgba(10, 80, 220, 0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 80%  60% at 50% 110%, rgba(var(--accent-rgb), 0.3) 0%, transparent 55%),
+        linear-gradient(175deg, #0f0030 0%, #060015 40%, #010010 70%, #040010 100%) !important;
 }
 
-/* Bintang halus — tidak bergerak, tidak mengganggu */
+/* Star field — halus dan indah */
 #page-2::before {
     content: '';
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
     background-image:
-        radial-gradient(circle, rgba(255,255,255,0.75) 1px, transparent 1px),
-        radial-gradient(circle, rgba(200,185,255,0.55) 1px, transparent 1px),
-        radial-gradient(circle, rgba(170,215,255,0.45) 1px, transparent 1px);
-    background-size: 180px 180px, 95px 95px, 130px 130px;
-    background-position: 30px 40px, 60px 75px, 15px 55px;
+        radial-gradient(circle, rgba(255,255,255,0.9)  1px, transparent 1px),
+        radial-gradient(circle, rgba(210,190,255,0.6)  1px, transparent 1px),
+        radial-gradient(circle, rgba(190,220,255,0.5)  1px, transparent 1px),
+        radial-gradient(circle, rgba(255,190,220,0.4)  1px, transparent 1px);
+    background-size: 200px 200px, 110px 110px, 155px 155px, 85px 85px;
+    background-position: 40px 55px, 70px 20px, 20px 90px, 55px 140px;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.45;
+    opacity: 0.5;
 }
 
-/* Warna nebula — subtle, tidak menyilaukan */
+/* Color aurora pools — lebih visible, colorful */
 #page-2::after {
     content: '';
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
     background:
-        radial-gradient(ellipse 40% 28% at 12% 18%, rgba(100,0,220,0.18) 0%, transparent 70%),
-        radial-gradient(ellipse 32% 22% at 90% 12%, rgba(0,80,220,0.14)  0%, transparent 70%),
-        radial-gradient(ellipse 38% 28% at 8%  78%, rgba(200,0,130,0.13) 0%, transparent 70%),
-        radial-gradient(ellipse 45% 32% at 88% 82%, rgba(var(--accent-rgb),0.16) 0%, transparent 70%);
+        radial-gradient(ellipse 55% 40% at 10% 15%, rgba(120, 0, 255, 0.22) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 35% at 92% 10%, rgba(0, 80, 255, 0.18)  0%, transparent 65%),
+        radial-gradient(ellipse 50% 38% at 5%  85%, rgba(220, 0, 130, 0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 42% at 90% 85%, rgba(var(--accent-rgb), 0.2) 0%, transparent 65%);
     pointer-events: none;
     z-index: 0;
+    animation: auroraShift 15s ease-in-out infinite alternate;
+}
+@keyframes auroraShift {
+    0%   { opacity: 0.6; }
+    100% { opacity: 1; }
 }
 
-/* ── HEADER ── */
+/* ── HEADER: glassmorphism terang ── */
 .rpg-header {
     position: sticky !important;
     top: 0 !important;
     z-index: 50 !important;
-    background: rgba(12, 4, 30, 0.82) !important;
-    backdrop-filter: blur(20px) !important;
+    background: rgba(8, 2, 22, 0.8) !important;
+    backdrop-filter: blur(24px) !important;
     border: none !important;
-    border-bottom: 1.5px solid rgba(var(--accent-rgb), 0.4) !important;
+    border-bottom: 1.5px solid rgba(var(--accent-rgb), 0.45) !important;
     border-radius: 0 !important;
     padding: 14px 16px 0 !important;
     margin-bottom: 0 !important;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.45) !important;
 }
 
 .p2-topbar {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
+    gap: 10px;
+    margin-bottom: 12px;
 }
 
 .p2-back-btn {
     background: rgba(var(--accent-rgb), 0.15) !important;
-    border: 1.5px solid rgba(var(--accent-rgb), 0.5) !important;
+    border: 1.5px solid rgba(var(--accent-rgb), 0.55) !important;
     color: var(--accent-clr) !important;
     width: 40px; height: 40px;
     border-radius: 12px;
@@ -1151,33 +1314,31 @@ body {
     flex-shrink: 0;
     transition: 0.2s ease;
 }
-.p2-back-btn:hover {
-    background: var(--accent-clr) !important;
-    color: #fff !important;
-}
+.p2-back-btn:hover { background: var(--accent-clr) !important; color: #fff !important; }
 
 .p2-title-wrap {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 0;
 }
 
-/* Category title — terang, NO glow */
+/* Category title — clean, no glow */
 .p2-title-wrap h2 {
     font-family: 'Cinzel', serif !important;
-    font-size: 1.55rem !important;
+    font-size: 1.6rem !important;
     font-weight: 700 !important;
     color: #ffffff !important;
-    letter-spacing: 1.5px !important;
+    letter-spacing: 2px !important;
     line-height: 1 !important;
     margin: 0 !important;
     text-shadow: none !important;
 }
 
+/* Quick-change button */
 .p2-realm-btn {
     background: rgba(var(--accent-rgb), 0.15) !important;
-    border: 1.5px solid rgba(var(--accent-rgb), 0.5) !important;
+    border: 1.5px solid rgba(var(--accent-rgb), 0.55) !important;
     color: var(--accent-clr) !important;
     width: 40px; height: 40px;
     border-radius: 12px;
@@ -1186,147 +1347,163 @@ body {
     flex-shrink: 0;
     transition: 0.2s ease;
 }
-.p2-realm-btn:hover {
-    background: rgba(var(--accent-rgb), 0.3) !important;
-    border-color: var(--accent-clr) !important;
-}
+.p2-realm-btn:hover { background: rgba(var(--accent-rgb), 0.3) !important; }
 
-/* Search */
+/* Search row */
 .p2-search-row {
     display: flex;
-    gap: 10px;
-    margin-bottom: 11px;
+    gap: 8px;
+    margin-bottom: 10px;
 }
 .p2-search-box {
     flex: 1;
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255,255,255,0.09);
-    border: 1.5px solid rgba(var(--accent-rgb), 0.35);
+    background: rgba(255,255,255,0.07);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.4);
     border-radius: 14px;
-    padding: 0 16px;
-    height: 44px;
+    padding: 0 14px;
+    height: 42px;
     transition: 0.2s ease;
 }
 .p2-search-box:focus-within {
     border-color: var(--accent-clr);
-    background: rgba(var(--accent-rgb), 0.12);
+    background: rgba(var(--accent-rgb), 0.1);
 }
-.p2-search-box i {
-    color: var(--accent-clr);
-    font-size: 0.85rem;
-    flex-shrink: 0;
-    opacity: 0.8;
-}
+.p2-search-box i { color: rgba(var(--accent-rgb), 0.75); font-size: 0.82rem; flex-shrink: 0; }
 .p2-search-box input {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #fff;
-    font-size: 0.9rem;
-    width: 100%;
+    background: transparent; border: none; outline: none;
+    color: #fff; font-size: 0.88rem; width: 100%;
     font-family: 'Exo 2', sans-serif;
 }
-.p2-search-box input::placeholder { color: rgba(255,255,255,0.38); }
+.p2-search-box input::placeholder { color: rgba(255,255,255,0.32); }
 
 .p2-filter-btn {
-    width: 44px; height: 44px;
+    width: 42px; height: 42px;
     border-radius: 14px;
     background: rgba(var(--accent-rgb), 0.15);
     border: 1.5px solid rgba(var(--accent-rgb), 0.5);
     color: var(--accent-clr);
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     flex-shrink: 0;
     transition: 0.2s ease;
 }
-.p2-filter-btn:hover {
-    background: var(--accent-clr);
-    color: #fff;
-}
+.p2-filter-btn:hover { background: var(--accent-clr); color: #fff; }
 
 /* Count bar */
 .p2-count-bar {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 2px;
-    border-top: 1px solid rgba(var(--accent-rgb), 0.25);
+    gap: 7px;
+    padding: 7px 2px;
+    border-top: 1px solid rgba(var(--accent-rgb), 0.22);
 }
 .p2-count-dot {
     width: 5px; height: 5px;
     border-radius: 50%;
     background: var(--accent-clr);
     flex-shrink: 0;
-    animation: pulseDot 2s ease-in-out infinite;
+    animation: pulseDot 2.5s ease-in-out infinite;
 }
-@keyframes pulseDot {
-    0%,100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.35; transform: scale(0.5); }
-}
+@keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.5)} }
 #p2-count-text {
     font-family: 'Exo 2', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: rgba(255,255,255,0.6);
+    font-size: 0.7rem; font-weight: 700;
+    color: rgba(255,255,255,0.55);
     letter-spacing: 0.5px;
 }
+
+/* Filter panel */
+.filter-panel {
+    background: rgba(8, 2, 22, 0.92);
+    margin-top: 8px; padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(var(--accent-rgb), 0.3);
+    backdrop-filter: blur(20px);
+}
+.filter-section { margin-bottom: 14px; }
+.filter-section label {
+    display: block; margin-bottom: 8px;
+    font-size: 0.6rem; font-weight: 800;
+    color: rgba(var(--accent-rgb), 1);
+    letter-spacing: 2.5px;
+    font-family: 'Orbitron', sans-serif;
+    opacity: 0.85;
+}
+.rarity-selector, .tag-selector { display: flex; flex-wrap: wrap; gap: 6px; }
+.r-chip, .t-chip {
+    padding: 4px 11px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px;
+    font-weight: 700; font-size: 0.65rem;
+    cursor: pointer;
+    border: 1.5px solid rgba(var(--accent-rgb), 0.35);
+    color: rgba(255,255,255,0.78);
+    font-family: 'Orbitron', sans-serif;
+    transition: 0.18s ease;
+}
+.r-chip:hover, .t-chip:hover { border-color: var(--accent-clr); background: rgba(var(--accent-rgb), 0.18); color: #fff; }
+.r-chip.active, .t-chip.active { background: var(--accent-clr); color: #fff; border-color: var(--accent-clr); }
 
 /* ── GRID ── */
 .unit-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 14px !important;
-    padding: 16px 14px 110px !important;
+    gap: 12px !important;
+    padding: 14px 12px 110px !important;
     position: relative;
     z-index: 1;
 }
 
-/* ── UNIT CARD — clean, colorful, NO glow ── */
+/* ── UNIT CARD: HOLOGRAPHIC ANIME CARD DESIGN ── */
 .unit-card {
     position: relative !important;
-    background: linear-gradient(155deg,
-        rgba(40, 10, 80, 0.9) 0%,
-        rgba(20, 5, 50, 0.95) 100%
+    background: linear-gradient(150deg,
+        rgba(38, 10, 75, 0.92) 0%,
+        rgba(18, 4, 45, 0.95) 60%,
+        rgba(30, 8, 60, 0.92) 100%
     ) !important;
-    border: 1.5px solid rgba(var(--accent-rgb), 0.45) !important;
-    border-radius: 18px !important;
+    border: 1.5px solid rgba(var(--accent-rgb), 0.5) !important;
+    border-radius: 16px !important;
     overflow: hidden !important;
     cursor: pointer !important;
     transition:
-        transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275),
-        border-color 0.25s ease !important;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.5) !important;
+        transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        border-color 0.25s ease,
+        box-shadow 0.3s ease !important;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.55) !important;
+    animation: cardEnter 0.45s cubic-bezier(0.165, 0.84, 0.44, 1) backwards !important;
+    animation-delay: calc(var(--i, 0) * 40ms) !important;
 }
 
-/* Shimmer line atas — satu-satunya efek "sparkle" */
+@keyframes cardEnter {
+    from { opacity: 0; transform: translateY(18px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Top color accent — solid, clean */
 .unit-card::before {
     content: '' !important;
     position: absolute !important;
     top: 0 !important; left: 0 !important; right: 0 !important;
-    height: 2px !important;
-    background: linear-gradient(90deg,
-        transparent 0%,
-        var(--accent-clr) 35%,
-        #ffffff 50%,
-        var(--accent-clr) 65%,
-        transparent 100%
-    ) !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, transparent, var(--accent-clr), rgba(255,255,255,0.9), var(--accent-clr), transparent) !important;
     z-index: 6 !important;
-    opacity: 0.85 !important;
+    opacity: 0.9 !important;
 }
 
-/* Bottom fade — natural, tidak lebay */
+/* Bottom name plate gradient */
 .unit-card::after {
     content: '' !important;
     position: absolute !important;
     bottom: 0 !important; left: 0 !important; right: 0 !important;
-    height: 40% !important;
+    height: 45% !important;
     background: linear-gradient(to top,
-        rgba(15, 3, 38, 0.96) 0%,
-        rgba(15, 3, 38, 0.55) 45%,
+        rgba(12, 2, 30, 0.97) 0%,
+        rgba(12, 2, 30, 0.65) 45%,
         transparent 100%
     ) !important;
     z-index: 2 !important;
@@ -1334,9 +1511,15 @@ body {
 }
 
 .unit-card:hover {
-    transform: translateY(-6px) scale(1.025) !important;
+    transform: translateY(-7px) scale(1.025) !important;
     border-color: var(--accent-clr) !important;
-    box-shadow: 0 12px 28px rgba(0,0,0,0.55) !important;
+    box-shadow: 0 16px 35px rgba(0,0,0,0.6) !important;
+}
+
+/* Card img wrapper */
+.card-img-wrap {
+    position: relative;
+    width: 100%;
 }
 
 .unit-card img {
@@ -1347,103 +1530,55 @@ body {
     display: block !important;
     z-index: 1 !important;
     position: relative !important;
-    transition: transform 0.35s ease !important;
+    transition: transform 0.4s ease !important;
 }
-.unit-card:hover img { transform: scale(1.04) !important; }
+.unit-card:hover img { transform: scale(1.05) !important; }
 
+/* Name plate */
 .unit-info {
     position: absolute !important;
     bottom: 0 !important; left: 0 !important; right: 0 !important;
     z-index: 3 !important;
-    padding: 8px 12px 14px !important;
+    padding: 6px 10px 12px !important;
     background: transparent !important;
 }
-
-/* Nama — putih bersih, NO glow */
 .unit-info .name {
     font-family: 'Exo 2', sans-serif !important;
-    font-size: 0.85rem !important;
+    font-size: 0.82rem !important;
     font-weight: 700 !important;
     color: #ffffff !important;
-    text-transform: none !important;
-    letter-spacing: 0.2px !important;
-    line-height: 1.25 !important;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.9) !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.9) !important;
     display: block !important;
+    letter-spacing: 0.1px !important;
+    line-height: 1.2 !important;
 }
 
-/* Rarity badge — hexagon, solid, NO glow */
+/* Rarity badge — hexagon, top-right */
 .unit-rarity {
     position: absolute !important;
-    top: 10px !important;
-    right: 10px !important;
-    bottom: auto !important;
-    left: auto !important;
+    top: 9px !important; right: 9px !important;
+    bottom: auto !important; left: auto !important;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%) !important;
     background: var(--accent-clr) !important;
     color: #fff !important;
-    width: 30px !important;
-    height: 30px !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    border: none !important;
-    font-size: 0.6rem !important;
-    font-weight: 900 !important;
+    width: 30px !important; height: 30px !important;
+    border: none !important; border-radius: 0 !important; padding: 0 !important;
+    font-size: 0.58rem !important; font-weight: 900 !important;
     font-family: 'Orbitron', sans-serif !important;
     z-index: 7 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-shadow: none !important;
-    box-shadow: none !important;
+    display: flex !important; align-items: center !important; justify-content: center !important;
+    text-shadow: none !important; box-shadow: none !important;
 }
 
-/* Filter panel */
-.filter-panel {
-    background: rgba(10, 3, 28, 0.9);
-    margin-top: 10px; padding: 14px;
-    border-radius: 12px;
-    border: 1px solid rgba(var(--accent-rgb), 0.3);
-    backdrop-filter: blur(16px);
-}
-
-.filter-section { margin-bottom: 14px; }
-.filter-section label {
-    display: block; margin-bottom: 8px;
-    font-size: 0.65rem; font-weight: 800;
-    color: var(--accent-clr);
-    letter-spacing: 2px;
-    font-family: 'Orbitron', sans-serif;
-    text-shadow: none;
-}
-
-.rarity-selector, .tag-selector { display: flex; flex-wrap: wrap; gap: 7px; }
-.r-chip, .t-chip {
-    padding: 5px 12px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 8px;
-    font-weight: 700; font-size: 0.68rem;
-    cursor: pointer;
-    border: 1.5px solid rgba(var(--accent-rgb), 0.35);
-    white-space: nowrap;
-    transition: 0.2s ease;
-    color: rgba(255,255,255,0.82);
-    font-family: 'Orbitron', sans-serif;
-}
-.r-chip:hover, .t-chip:hover {
-    border-color: var(--accent-clr);
-    background: rgba(var(--accent-rgb), 0.2);
-    color: #fff;
-}
-.r-chip.active, .t-chip.active {
-    background: var(--accent-clr);
-    color: white;
-    border-color: var(--accent-clr);
-    box-shadow: none;
-}
+/* Rarity color overrides per tier */
+.rarity-s { background: linear-gradient(135deg, #ff6b35, #ff2400) !important; }
+.rarity-a { background: linear-gradient(135deg, #a855f7, #7c3aed) !important; }
+.rarity-b { background: linear-gradient(135deg, #3b82f6, #2563eb) !important; }
+.rarity-c { background: linear-gradient(135deg, #22c55e, #16a34a) !important; }
+.rarity-d { background: linear-gradient(135deg, #9ca3af, #6b7280) !important; }
 
 /* ── PAGE 3 RARITY BADGE — hexagon, top right ── */
 #detail-rarity-badge {

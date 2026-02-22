@@ -557,11 +557,11 @@ function renderArchive() {
             : `${totalInCat} ${currentCat}`;
     }
 
-    grid.innerHTML = filtered.map(u => `
-        <div class="unit-card" onclick="showLegendDetail('${u.name.replace(/'/g, "\\'")}')">
-            <div style="position:relative">
+    grid.innerHTML = filtered.map((u, idx) => `
+        <div class="unit-card" style="--i:${idx}" onclick="showLegendDetail('${u.name.replace(/'/g, "\\'")}')">
+            <div class="card-img-wrap">
                 <img src="${u.main_image_url || ''}" alt="${u.name || ''}">
-                <div class="unit-rarity">${u.rarity || ''}</div>
+                <div class="unit-rarity rarity-${(u.rarity||'').toLowerCase()}">${u.rarity || ''}</div>
             </div>
             <div class="unit-info"><div class="name">${u.name || ''}</div></div>
         </div>
