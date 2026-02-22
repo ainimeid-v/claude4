@@ -519,17 +519,10 @@ body {
 }
 
 .image-frame img { width: 100%; display: block; }
-#detail-rarity-badge {
-    position: absolute; bottom: 10px; right: 10px;
-    width: 45px; height: 45px; background: var(--accent-clr);
-    color: #ffffff !important; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 900;
-    border: 2px solid rgba(255,255,255,0.3);
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
+/* detail-rarity-badge overridden in page-2 redesign section below */
 
 .unit-bio { text-align: center; margin-top: 20px; }
-.unit-bio h1 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--accent-clr); margin-bottom: 5px; margin-top: -25px; }
+/* unit-bio h1 overridden in page-2 redesign section */
 .unit-bio h3 { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; font-style: italic; margin-top: -10px; }
 .detail-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; margin-top: -10px; justify-content: center; }
 .tag { background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 12px; font-size: 0.65rem; border: 1px solid var(--accent-clr); color: var(--accent-clr); font-weight: 700; }
@@ -980,7 +973,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     transition: var(--transition);
 }
 
@@ -1059,8 +1051,7 @@ body {
 /* receptionist removed */
 
 /* ================================================
-   PAGE 2 — ROMBAK TOTAL v3
-   Konsep: 2 kolom, card gede, font gede, terbaca
+   PAGE 2 — ROMBAK TOTAL v4
    ================================================ */
 
 /* ── HEADER ── */
@@ -1068,14 +1059,14 @@ body {
     position: sticky !important;
     top: 0 !important;
     z-index: 50 !important;
-    background: rgba(5, 2, 12, 0.92) !important;
+    background: rgba(5, 2, 12, 0.94) !important;
     backdrop-filter: blur(24px) !important;
     border: none !important;
-    border-bottom: 2px solid rgba(var(--accent-rgb), 0.4) !important;
+    border-bottom: 2px solid rgba(var(--accent-rgb), 0.35) !important;
     border-radius: 0 !important;
     padding: 12px 16px 0 !important;
     margin-bottom: 0 !important;
-    box-shadow: 0 6px 30px rgba(0,0,0,0.7) !important;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.6) !important;
 }
 
 /* Top bar */
@@ -1087,8 +1078,8 @@ body {
 }
 
 .p2-back-btn {
-    background: rgba(var(--accent-rgb), 0.12);
-    border: 1.5px solid rgba(var(--accent-rgb), 0.5);
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.4);
     color: var(--accent-clr);
     width: 40px; height: 40px;
     border-radius: 12px;
@@ -1104,35 +1095,57 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
 }
-.p2-realm-label {
+
+/* REALM badge — modern pill dengan icon hex */
+.p2-realm-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(var(--accent-rgb), 0.12);
+    border: 1px solid rgba(var(--accent-rgb), 0.35);
+    border-radius: 6px;
+    padding: 3px 8px;
+    width: fit-content;
+}
+.p2-realm-badge svg {
+    color: var(--accent-clr);
+    flex-shrink: 0;
+    opacity: 0.85;
+    width: 12px;
+    height: 12px;
+}
+.p2-realm-badge span {
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.55rem;
-    letter-spacing: 4px;
-    color: rgba(var(--accent-rgb), 0.55);
+    font-size: 0.65rem;       /* lebih besar dari sebelumnya */
+    font-weight: 800;          /* tebal */
+    letter-spacing: 3px;
+    color: var(--accent-clr);
     text-transform: uppercase;
+    opacity: 0.9;
 }
+
+/* Category title — Cinzel OK untuk label kategori */
 .p2-title-wrap h2 {
     font-family: 'Cinzel', serif !important;
-    font-size: 1.4rem !important;
+    font-size: 1.5rem !important;
     font-weight: 700 !important;
     color: #fff !important;
-    letter-spacing: 2px !important;
+    letter-spacing: 1px !important;
     line-height: 1 !important;
     margin: 0 !important;
-    text-shadow: 0 0 25px rgba(var(--accent-rgb), 0.5) !important;
+    text-shadow: none !important;  /* NO GLOW */
 }
 
 .p2-realm-btn {
-    background: rgba(var(--accent-rgb), 0.12);
-    border: 1.5px solid rgba(var(--accent-rgb), 0.5);
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.4);
     color: var(--accent-clr);
     width: 40px; height: 40px;
     border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
-    font-size: 1rem;
     flex-shrink: 0;
     transition: 0.2s ease;
 }
@@ -1149,8 +1162,8 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255,255,255,0.06);
-    border: 1.5px solid rgba(var(--accent-rgb), 0.25);
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.2);
     border-radius: 14px;
     padding: 0 16px;
     height: 44px;
@@ -1158,11 +1171,10 @@ body {
 }
 .p2-search-box:focus-within {
     border-color: var(--accent-clr);
-    background: rgba(var(--accent-rgb), 0.08);
-    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12);
+    background: rgba(var(--accent-rgb), 0.06);
 }
 .p2-search-box i {
-    color: rgba(var(--accent-rgb), 0.6);
+    color: rgba(var(--accent-rgb), 0.5);
     font-size: 0.9rem;
     flex-shrink: 0;
 }
@@ -1175,13 +1187,13 @@ body {
     width: 100%;
     font-family: 'Exo 2', sans-serif;
 }
-.p2-search-box input::placeholder { color: rgba(255,255,255,0.28); }
+.p2-search-box input::placeholder { color: rgba(255,255,255,0.25); }
 
 .p2-filter-btn {
     width: 44px; height: 44px;
     border-radius: 14px;
-    background: rgba(var(--accent-rgb), 0.1);
-    border: 1.5px solid rgba(var(--accent-rgb), 0.4);
+    background: rgba(var(--accent-rgb), 0.08);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.35);
     color: var(--accent-clr);
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
@@ -1196,16 +1208,15 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 2px;
+    padding: 7px 2px;
     border-top: 1px solid rgba(var(--accent-rgb), 0.12);
 }
 .p2-count-dot {
-    width: 7px; height: 7px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     background: var(--accent-clr);
-    box-shadow: 0 0 6px var(--accent-clr);
-    animation: pulseDot 2s ease-in-out infinite;
     flex-shrink: 0;
+    animation: pulseDot 2s ease-in-out infinite;
 }
 @keyframes pulseDot {
     0%,100% { opacity: 1; transform: scale(1); }
@@ -1213,10 +1224,10 @@ body {
 }
 #p2-count-text {
     font-family: 'Exo 2', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: rgba(255,255,255,0.45);
-    letter-spacing: 1px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.5px;
 }
 
 /* ── GRID: 2 KOLOM ── */
@@ -1230,16 +1241,16 @@ body {
 /* ── UNIT CARD ── */
 .unit-card {
     position: relative !important;
-    background: #0a0514 !important;
-    border: 1px solid rgba(var(--accent-rgb), 0.2) !important;
+    background: #080412 !important;
+    border: 1px solid rgba(var(--accent-rgb), 0.18) !important;
     border-radius: 16px !important;
     overflow: hidden !important;
     cursor: pointer !important;
     transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow 0.3s ease, border-color 0.3s ease !important;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.6) !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.55) !important;
 }
 
-/* Left accent bar — tebal, warna kategori */
+/* Left accent bar — warna kategori */
 .unit-card::before {
     content: '' !important;
     position: absolute !important;
@@ -1247,18 +1258,18 @@ body {
     width: 3px !important;
     background: var(--accent-clr) !important;
     z-index: 5 !important;
-    opacity: 0.8 !important;
+    opacity: 0.75 !important;
 }
 
-/* Bottom dark fade over image */
+/* Bottom fade */
 .unit-card::after {
     content: '' !important;
     position: absolute !important;
     bottom: 0 !important; left: 0 !important; right: 0 !important;
     height: 55% !important;
     background: linear-gradient(to top,
-        rgba(5,2,15,1) 0%,
-        rgba(5,2,15,0.7) 40%,
+        rgba(4,1,10,1) 0%,
+        rgba(4,1,10,0.65) 40%,
         transparent 100%
     ) !important;
     z-index: 2 !important;
@@ -1266,14 +1277,12 @@ body {
 }
 
 .unit-card:hover {
-    transform: translateY(-6px) scale(1.025) !important;
-    border-color: rgba(var(--accent-rgb), 0.6) !important;
-    box-shadow:
-        0 16px 36px rgba(var(--accent-rgb), 0.25),
-        0 4px 10px rgba(0,0,0,0.7) !important;
+    transform: translateY(-5px) scale(1.025) !important;
+    border-color: rgba(var(--accent-rgb), 0.55) !important;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.6) !important;
 }
 
-/* Image — taller */
+/* Image */
 .unit-card img {
     width: 100% !important;
     aspect-ratio: 2/3 !important;
@@ -1284,50 +1293,128 @@ body {
     position: relative !important;
 }
 
-/* Info overlay — di atas gambar, di bawah fade */
+/* Info overlay */
 .unit-info {
     position: absolute !important;
     bottom: 0 !important; left: 0 !important; right: 0 !important;
     z-index: 3 !important;
-    padding: 10px 12px 12px 14px !important;
+    padding: 10px 14px 12px !important;
     background: transparent !important;
 }
 
+/* Unit name — Exo 2 bukan Cinzel, mixed case support */
 .unit-info .name {
-    font-family: 'Cinzel', serif !important;
-    font-size: 0.85rem !important;
+    font-family: 'Exo 2', sans-serif !important;
+    font-size: 0.9rem !important;
     font-weight: 700 !important;
     color: #ffffff !important;
-    text-transform: none !important;
-    letter-spacing: 0.5px !important;
+    text-transform: none !important;   /* mixed case */
+    letter-spacing: 0.2px !important;
     line-height: 1.25 !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.9) !important;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.95) !important;
     display: block !important;
 }
 
-/* Rarity badge — bottom right */
+/* Rarity badge — HEXAGON shape, TOP RIGHT of image */
 .unit-rarity {
     position: absolute !important;
-    bottom: 10px !important;
-    right: 10px !important;
-    top: auto !important;
+    top: 8px !important;
+    right: 8px !important;
+    bottom: auto !important;
     left: auto !important;
-    background: rgba(var(--accent-rgb), 0.2) !important;
-    color: var(--accent-clr) !important;
-    border: 1.5px solid var(--accent-clr) !important;
-    padding: 3px 9px !important;
-    border-radius: 20px !important;
+    /* Hexagon via clip-path */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%) !important;
+    background: var(--accent-clr) !important;
+    color: #fff !important;
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
     font-size: 0.65rem !important;
     font-weight: 900 !important;
     font-family: 'Orbitron', sans-serif !important;
-    letter-spacing: 1px !important;
-    z-index: 4 !important;
-    backdrop-filter: blur(6px) !important;
-    text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.6) !important;
-    box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.3) !important;
+    letter-spacing: 0 !important;
+    z-index: 6 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+/* ── PAGE 3 RARITY BADGE — hexagon, top right ── */
+#detail-rarity-badge {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    bottom: auto !important;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%) !important;
+    width: 48px !important;
+    height: 48px !important;
+    background: var(--accent-clr) !important;
+    color: #fff !important;
+    border-radius: 0 !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 1.2rem !important;
+    font-weight: 900 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    z-index: 10 !important;
+}
+
+/* ── PAGE 3 UNIT NAME — mixed case, readable ── */
+.unit-bio h1 {
+    font-family: 'Exo 2', sans-serif !important;
+    font-size: 1.7rem !important;
+    font-weight: 800 !important;
+    color: var(--accent-clr) !important;
+    margin-bottom: 5px !important;
+    margin-top: -25px !important;
+    text-shadow: none !important;
+    text-transform: none !important;
+}
+
+/* ── REQUEST BUTTON ── */
+#request-btn {
+    background: var(--secondary-bg);
+    border: 2px solid var(--accent-clr);
+    color: var(--accent-clr);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: var(--transition);
+    box-shadow: none;
+}
+#request-btn:hover {
+    background: var(--accent-clr);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* Anti-screenshot print block */
+@media print {
+    body * { visibility: hidden !important; }
+    body::after {
+        content: 'KONTEN INI DILINDUNGI' !important;
+        visibility: visible !important;
+        position: fixed; top: 50%; left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 2rem; color: #000;
+    }
 }
 
 /* ================================================

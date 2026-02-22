@@ -40,12 +40,15 @@ const UI = {
         // Update visibility for clock/date and tiktok text
         const hud = document.getElementById('top-hud');
         const tiktok = document.getElementById('tiktok-text');
+        const reqBtn = document.getElementById('request-btn');
         if (pageId === 'page-1') {
             if (hud) hud.style.display = 'flex';
             if (tiktok) tiktok.style.display = 'block';
+            if (reqBtn) reqBtn.style.display = 'flex';
         } else {
             if (hud) hud.style.display = 'none';
             if (tiktok) tiktok.style.display = 'none';
+            if (reqBtn) reqBtn.style.display = 'none';
         }
         
         // Reset scroll nav state for page 3
@@ -374,6 +377,10 @@ async function init() {
     setInterval(() => UI.updateClock(), 1000);
     UI.updateClock();
 
+    // ── REQUEST BUTTON — only visible on page-1 initially ──
+    const reqBtn = document.getElementById('request-btn');
+    if (reqBtn) reqBtn.style.display = 'flex'; // starts on page-1
+
     // REVISI 3: SCROLL HANDLER FOR PAGE 3 - AUTO HIDE/SHOW NAV
     const page3 = document.getElementById('page-3');
     if (page3) {
@@ -393,6 +400,42 @@ async function init() {
             lastScrollY = currentScrollY;
         }, { passive: true });
     }
+
+    // ── ANTI SCREENSHOT / SCREEN RECORD ──
+    // 1. Block PrintScreen key — immediately clear clipboard
+    document.addEventListener('keyup', (e) => {
+        if (e.key === 'PrintScreen' || e.keyCode === 44) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText('').catch(() => {});
+            }
+            // Briefly show blocking overlay
+            const blocker = document.getElementById('ss-blocker');
+            if (blocker) {
+                blocker.style.display = 'block';
+                setTimeout(() => { blocker.style.display = 'none'; }, 600);
+            }
+        }
+    });
+    // 2. Block common screenshot combos (Ctrl+Shift+S, etc.)
+    document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'S' || e.key === 's')) {
+            e.preventDefault(); e.stopPropagation();
+        }
+        // Windows Snipping Tool shortcut
+        if (e.key === 'PrintScreen') {
+            e.preventDefault();
+        }
+    });
+    // 3. On visibility hidden (tab switch during screen record) — show blocker
+    document.addEventListener('visibilitychange', () => {
+        const blocker = document.getElementById('ss-blocker');
+        if (!blocker) return;
+        if (document.hidden) {
+            blocker.style.display = 'block';
+        } else {
+            setTimeout(() => { blocker.style.display = 'none'; }, 400);
+        }
+    });
 }
 
 function selectRealm(cat, show = true) {
@@ -448,9 +491,16 @@ function renderArchive() {
         return matchCat && matchSearch && matchRarity && matchTags;
     });
 
-    // Update count bar
+    // Update count bar — tampil "60 Character", "20 Pet", dst
     const countEl = document.getElementById('p2-count-text');
-    if (countEl) countEl.textContent = `${filtered.length} legends found`;
+    if (countEl) {
+        const totalInCat = rawData.filter(u => u.category === currentCat).length;
+        const showing = filtered.length;
+        const isFiltered = showing < totalInCat;
+        countEl.textContent = isFiltered
+            ? `${showing} / ${totalInCat} ${currentCat}`
+            : `${totalInCat} ${currentCat}`;
+    }
 
     grid.innerHTML = filtered.map(u => `
         <div class="unit-card" onclick="showLegendDetail('${u.name.replace(/'/g, "\\'")}')">
